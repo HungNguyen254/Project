@@ -1,0 +1,44 @@
+*{
+    margin:0;
+    padding:0;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.headtitle{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    gap:50px;
+    border:1px solid black;
+    width: 100%;
+    height: 88px;
+}
+.searchbox{
+    width: 478px;
+    height: 56px;
+    border-radius: 10px;
+    border:1px solid #cccc;
+}
+.headtitle h4{
+    opacity: 0.5;
+}
+.undertitle{
+    display:flex;
+    justify-content: center;
+    gap:50px;
+    align-items: center;
+    height: 48px;
+    width: 100%;
+    background-color: rgb(46, 46, 46);
+}
+.undertitle p{
+    color:rgb(121, 121, 121);
+}
+.banner{
+    width: 100%;
+}
+.TitleCategoryProduct{
+    display:flex;
+    justify-content: center;
+    gap:800px;
+    margin-top:30px;
+}

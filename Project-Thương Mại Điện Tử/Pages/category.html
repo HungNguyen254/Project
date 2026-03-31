@@ -50,7 +50,7 @@
                 <div class="ListCategories">
                     <p class="idcategory">DM001</p>
                     <p class="namecategory">Quần áo</p>
-                    <p class="StatusActive"><i class="fa-solid fa-circle"></i> Đang hoạt động</p>
+                    <p class="StatusActive"><span class="dotgreen"></span> Đang hoạt động</p>
                     <p><button id="btndelete"><img src="../Asset/Image/Button.png" alt=""></button>
                         <button id="btnedit"><img src="../Asset/Image/_Button base.png" alt=""></button>
                     </p>
@@ -59,7 +59,7 @@
                 <div class="ListCategories">
                     <p class="idcategory">DM002</p>
                     <p class="namecategory">Kính mắt</p>
-                    <p class="StatusInActive"><i class="fa-solid fa-circle"></i> Ngừng hoạt động</p>
+                    <p class="StatusInActive"><span class="dotred"></span>Ngừng hoạt động</p>
                     <p><button id="btndelete"><img src="../Asset/Image/Button.png" alt=""></button>
                         <button id="btnedit"><img src="../Asset/Image/_Button base.png" alt=""></button>
                     </p>
@@ -68,7 +68,7 @@
                 <div class="ListCategories">
                     <p class="idcategory">DM003</p>
                     <p class="namecategory">Giầy dép</p>
-                    <p class="StatusActive"><i class="fa-solid fa-circle"></i> Đang hoạt động</p>
+                    <p class="StatusActive"><span class="dotgreen"></span> Đang hoạt động</p>
                     <p><button id="btndelete"><img src="../Asset/Image/Button.png" alt=""></button>
                         <button id="btnedit"><img src="../Asset/Image/_Button base.png" alt=""></button>
                     </p>
@@ -77,7 +77,7 @@
                 <div class="ListCategories">
                     <p class="idcategory">DM004</p>
                     <p class="namecategory">Thời trang nam</p>
-                    <p class="StatusInActive"><i class="fa-solid fa-circle"></i> Ngừng hoạt động</p>
+                    <p class="StatusInActive"><span class="dotred"></span> Ngừng hoạt động</p>
                     <p><button id="btndelete"><img src="../Asset/Image/Button.png" alt=""></button>
                         <button id="btnedit"><img src="../Asset/Image/_Button base.png" alt=""></button>
                     </p>
@@ -86,7 +86,7 @@
                 <div class="ListCategories">
                     <p class="idcategory">DM005</p>
                     <p class="namecategory">Thời trang nữ</p>
-                    <p class="StatusInActive"><i class="fa-solid fa-circle"></i> Ngừng hoạt động</p>
+                    <p class="StatusInActive"><span class="dotred"></span> Ngừng hoạt động</p>
                     <p><button id="btndelete"><img src="../Asset/Image/Button.png" alt=""></button>
                         <button id="btnedit"><img src="../Asset/Image/_Button base.png" alt=""></button>
                     </p>
@@ -95,7 +95,7 @@
                 <div class="ListCategories">
                     <p class="idcategory">DM006</p>
                     <p class="namecategory">Hoa quả</p>
-                    <p class="StatusInActive"><i class="fa-solid fa-circle"></i> Ngừng hoạt động</p>
+                    <p class="StatusInActive"><span class="dotred"></span>Ngừng hoạt động</p>
                     <p><button id="btndelete"><img src="../Asset/Image/Button.png" alt=""></button>
                         <button id="btnedit"><img src="../Asset/Image/_Button base.png" alt=""></button>
                     </p>
@@ -104,7 +104,7 @@
                 <div class="ListCategories">
                     <p class="idcategory">DM007</p>
                     <p class="namecategory">Rau</p>
-                    <p class="StatusActive"><i class="fa-solid fa-circle"></i> Đang hoạt động</p>
+                    <p class="StatusActive"><span class="dotgreen"></span> Đang hoạt động</p>
                     <p><button id="btndelete"><img src="../Asset/Image/Button.png" alt=""></button>
                         <button id="btnedit"><img src="../Asset/Image/_Button base.png" alt=""></button>
                     </p>
@@ -113,7 +113,7 @@
                 <div class="ListCategories">
                     <p class="idcategory">DM008</p>
                     <p class="namecategory">Điện thoại</p>
-                    <p class="StatusInActive"><i class="fa-solid fa-circle"></i> Ngừng hoạt động</p>
+                    <p class="StatusInActive"><span class="dotred"></span> Ngừng hoạt động</p>
                     <p><button id="btndelete"><img src="../Asset/Image/Button.png" alt=""></button>
                         <button id="btnedit"><img src="../Asset/Image/_Button base.png" alt=""></button>
                     </p>
@@ -142,8 +142,17 @@
 
         <div class="chooseStatus">
             <p>Trạng thái</p><br>
-            <label for=""><input type="radio" name="statusCategory" id="statusCategory" value="Active"> Đang hoạt động</label>
-            <label for=""><input type="radio" name ="statusCategory" id="statusCategory" value="InActive"> Ngừng hoạt động</label>
+            <label class="radio">
+                <input type="radio" name="status" checked>
+                <span class="checkmark"></span>
+                Đang hoạt động
+            </label>
+
+            <label class="radio">
+                <input type="radio" name="status">
+                <span class="checkmark"></span>
+                Ngừng hoạt động
+            </label>
         </div>
         <hr class="LineInFormAddCategory">
         <div class="BtnInForm">
@@ -162,8 +171,16 @@
 
         <div class="chooseStatus">
             <p>Trạng thái</p><br>
-            <label for=""><input type="radio" name="statusCategory" id="statusCategory" value="Active"> Đang hoạt động</label>
-            <label for=""><input type="radio" name ="statusCategory" id="statusCategory" value="InActive"> Ngừng hoạt động</label>
+            <label class="radio">
+                <input type="radio" name="status" checked>
+                <span class="checkmark"></span>
+                Đang hoạt động
+            </label>
+            <label class="radio">
+                <input type="radio" name="status">
+                <span class="checkmark"></span>
+                Ngừng hoạt động
+            </label>
         </div>
         <hr class="LineInFormAddCategory">
         <div class="BtnInForm">

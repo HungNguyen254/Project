@@ -160,7 +160,7 @@
 .LineInList{
     margin-top: 10px;
     width: 100%;
-    opacity: 0.5;
+    opacity: 0.3;
 }
 .StatusInActive{
     border:1px solid black;
@@ -181,7 +181,7 @@
     gap:20px;
 }
 .pagebutton{
-    border:1px solid black;
+    border:1px solid #ccc;
     border-radius: 5px;
     padding-left: 20px;
     padding-right: 20px;
@@ -227,6 +227,26 @@
     border-radius:10px;
 
 }
+.dotgreen{
+    width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 6px;
+  background-color: green;
+  margin-left: 10px;
+  margin-bottom: 2px;
+}
+.dotred{
+     width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 6px;
+  background-color: red;
+  margin-left: 10px;
+  margin-bottom: 2px;
+}
 .symbol{
     color:red;
 }
@@ -271,4 +291,37 @@
 .FormUpdateCategory h2{
     margin-top:20px;
     margin-left: 20px;
+}
+.radio {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.radio input {
+  display: none;
+}
+
+.checkmark {
+  width: 16px;
+  height: 16px;
+  border: 2px solid #ccc;
+  border-radius: 50%;
+  position: relative;
+}
+
+.radio input:checked + .checkmark {
+  background: #2f6fed;
+  border-color: #2f6fed;
+}
+
+.radio input:checked + .checkmark::after {
+  content: "✔";
+  color: white;
+  font-size: 12px;
+  position: absolute;
+  top: -2px;
+  left: 2px;
 }

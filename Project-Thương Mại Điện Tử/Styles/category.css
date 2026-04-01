@@ -1,0 +1,352 @@
+*{
+    margin:0;
+    padding:0;
+    font-family: "Inter",sans-serif;
+}
+.category{
+    display: flex;
+    overflow-x: hidden;
+}
+.boardleft{
+    background-color: rgb(246, 248, 249);
+    border: 1px solid #ccc;
+    width: 240px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+.boardleft h2{
+    margin-top: 10px;
+    margin-left: 20px;
+}
+.statistic{
+    padding:10px
+}
+.Product{
+    padding: 10px;
+}
+#shape{
+    position:fixed;
+    right:12px;
+    top:113px;
+    opacity: 0.5;
+}
+.statistic:hover{
+    cursor: pointer;
+    background-color:#D7EDFF ;
+    color: #4094F7;
+    padding:10px;
+    transition: all 1s;
+
+}
+.Categories{
+    background-color:rgb(215, 237, 255) ;
+    color: rgb(39, 130, 247);
+    padding:10px;
+    transition: all 1s;
+}
+.statisticlink{
+    color:black;
+    text-decoration: none;
+}
+.Product:hover{
+    cursor: pointer;
+    background-color:#D7EDFF ;
+    color: #4094F7;
+    padding:10px;
+    transition: all 1s;
+
+}
+.productlink{
+    color:black;
+    text-decoration: none;
+}
+.boardright{
+    width: 100%;
+    height: 100%;
+}
+.boardright img{
+    width: 36px;
+    height: 36px;
+    border-radius: 70%;
+}
+/* .boardright{
+    gap: 20px;
+    width: 100vw;
+    display: flex;
+    justify-content: flex-end;
+} */
+.headboardright{
+    gap: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-top:10px;
+    margin-right: 10px;
+}
+.line{
+    border:1px solid #ccc;
+    
+}
+.underhead{
+    display: flex;
+    justify-content: space-between;
+    margin:10px;
+}
+.btnadd{
+    padding:10px;
+    background-color:#4094F7 ;
+    color:white;
+    border:1px solid #ccc;
+    border:none;
+    border-radius: 10px;
+}
+.btnadd{
+    cursor: pointer;
+}
+.searchfilter{
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+.searchfilter input{
+    align-items: center;
+}
+.searchbox{
+    padding:10px;
+    border:1px solid #ccc;
+    border-radius: 10px;
+}
+.selectbox{
+    width: 200px;
+    border:1px solid #ccc;
+    border-radius: 10px;
+}
+.th{
+    display: grid;
+    grid-template-columns: 1fr 2fr 1.5fr 1fr;
+    background-color:#F9FAFB ;
+    height: 44px;
+    align-items: center;
+}
+.ListCategories{
+    display: grid;
+    grid-template-columns: 1fr 2fr 1.5fr 1fr;
+    margin-top: 10px;
+    align-items: center;
+}
+.StatusActive{
+    border:1px solid black;
+    border-radius: 20px;
+    width: 160px;
+    height: 22px;
+    background-color: #ECFDF3;
+    color:#1F8A5D ;
+    border:none;
+}
+#btndelete{
+    margin-right: 20px;
+    border:none;
+    background-color: white;
+}
+#btndelete:hover{
+    cursor: pointer;
+}
+#btnedit{
+    margin-right: 10px;
+    border:none;
+    background-color: white;
+}
+#btnedit:hover{
+    cursor: pointer;
+    border:1px solid #ccc;
+    transition: all 2s;
+}
+.LineInList{
+    margin-top: 10px;
+    width: 100%;
+    opacity: 0.3;
+}
+.StatusInActive{
+    border:1px solid black;
+    border-radius: 20px;
+    width: 170px;
+    height: 22px;
+    background-color: #FEF2F2;
+    color:#B91C1C ;
+    border:none;
+}
+.DashBoard{
+    /* margin-left: 50px; */
+    /* padding-left: 10px; */
+
+}
+.pageBut{
+    display:flex;
+    justify-content: center;
+    margin-top: 10px;
+    gap:20px;
+}
+.pagebutton{
+    border:1px solid #ccc;
+    border-radius: 5px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+
+}
+.pagebutton:hover{
+    cursor: pointer;
+    background-color: #cccc;
+}
+.FormAddCategory{
+    display:none;
+    border:1px solid black;
+    width: 700px;
+    height: 450px;
+    border-radius: 10px;
+    position: absolute;
+    top:100px;
+    right:400px;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+}
+.FormAddCategory h2{
+    margin-top:20px;
+    margin-left: 20px;
+}
+.AddIdCategoryInput{
+    width: 651px;
+    height: 44px;
+    margin-left:20px;
+    border-radius:10px;
+    margin-top:10px;
+    border:1px solid #ccc;
+}
+.AddIdCategory{
+    margin-left:20px;
+    margin-top:50px;
+}
+.AddNameCategory{
+    margin-left:20px;
+    margin-top:20px;
+    margin-bottom: 20px;
+
+}
+.AddNameCategoryInput{
+    width: 651px;
+    height: 44px;
+    margin-left:20px;
+    border-radius:10px;
+    border:1px solid #ccc;
+}
+.dotgreen{
+    width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 6px;
+  background-color: green;
+  margin-left: 10px;
+  margin-bottom: 2px;
+}
+.dotred{
+     width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 6px;
+  background-color: red;
+  margin-left: 10px;
+  margin-bottom: 2px;
+}
+.symbol{
+    color:red;
+}
+.chooseStatus{
+    margin-top:20px;
+    margin-left:20px;
+}
+.LineInFormAddCategory{
+    width: 90%;
+    margin-left:20px;
+    margin-top:20px;
+}
+.BtnCancel{
+    background-color: white;
+    padding:10px;
+    width: 72px;
+    border-radius: 10px;
+    border:1px solid #cccc;
+}
+.BtnConfirm{
+    background-color:rgb(0, 122, 255) ;
+    padding:10px;
+    color:white;
+    width:86px;
+    border-radius: 10px;
+    border:1px solid #cccc;
+}
+.BtnInForm{
+    display:flex;
+    justify-content: flex-end;
+    padding-right: 30px;
+    padding-top:30px;
+    gap:20px;
+}
+.FormUpdateCategory{
+    border:1px solid rgb(0, 0, 0);
+    width: 700px;
+    height: 450px;
+    border-radius: 10px;
+    margin-top:50px;
+    display:none;
+    position: absolute;
+    top:100px;
+    right:400px;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+}
+.FormUpdateCategory h2{
+    margin-top:20px;
+    margin-left: 20px;
+}
+.radio {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.radio input {
+  display: none;
+}
+
+.checkmark {
+  width: 16px;
+  height: 16px;
+  border: 2px solid #ccc;
+  border-radius: 50%;
+  position: relative;
+}
+
+.radio input:checked + .checkmark {
+  background: #2f6fed;
+  border-color: #2f6fed;
+}
+
+.radio input:checked + .checkmark::after {
+  content: "✔";
+  color: white;
+  font-size: 12px;
+  position: absolute;
+  top: -2px;
+  left: 2px;
+}

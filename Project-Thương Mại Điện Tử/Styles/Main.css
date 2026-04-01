@@ -1,0 +1,232 @@
+*{
+    margin:0;
+    padding:0;
+    font-family: "Inter", sans-serif;
+    overflow-x: hidden;
+}
+.headtitle{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    gap:40px;
+    border:1px solid black;
+    width: 100%;
+    height: 88px;
+}
+.searchbox{
+    width: 478px;
+    height: 56px;
+    border-radius: 10px;
+    border:1px solid #F5F5F5;
+    background-color: #F5F5F5;
+}
+.searchbar img{
+    position: absolute;
+    top:31px;
+}
+.headtitle h4{
+    opacity: 0.3;
+}
+.headtitle h2{
+    opacity: 0.7;
+}
+.undertitle img{
+    display:inline;
+    opacity: 0.5;
+}
+.headnarva{
+    display:flex;
+    gap:20px;
+}
+.undertitle{
+    display:flex;
+    justify-content: center;
+    gap:43px;
+    align-items: center;
+    height: 50px;
+    width: 100%;
+    background-color: rgb(46, 46, 46);
+}
+.undertitle p{
+    color:rgb(121, 121, 121);
+}
+.bannerimg img{
+    width: 100%;
+    display:block;
+}
+.TitleCategoryProduct{
+    display:flex;
+    justify-content: center;
+    gap:800px;
+    margin-top:30px;
+}
+.Product1{
+    border:1px solid white;
+    width: 160px;
+    height: 128px;
+    border-radius: 10px;
+    background-color: rgb(237, 237, 237);
+}
+.Product1 p{
+    display: flex;
+    flex-direction: column;
+    padding-top:50px;
+    justify-content: center;
+    align-items: center;
+}
+.categoriesProduct{
+    display:flex;
+    justify-content: center;
+    gap:50px;
+    margin-top:20px;
+}
+.titleunderbanner{
+    height: 350px;
+    width: 100%;
+    background-color: rgb(250, 250, 250);
+}
+.titlecontent{
+    display:flex;
+    gap:30px;
+    margin-left:150px;
+    margin-top:30px;
+}
+.titlecategory1 p{
+    border:2px solid black;
+    margin-top:4px;
+    border-radius: 10px;
+}
+.ProductsInMainLine1{
+    margin-top:20px;
+    display:flex;
+    justify-content: center;
+    gap:30px;
+}
+.InfoProduct{
+    border:1px solid rgb(246, 246, 246);
+    width: 268px;
+    height: 432px;
+    gap:20px;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    background-color: rgb(246, 246, 246);
+}
+.InfoProduct img{
+    width: 160px;
+    height: 160px;
+}
+.descProduct{
+   text-align: center;
+}
+.iconheart1 img{
+    width: 29px;
+    height: 26px;
+    padding-left: 180px;
+}
+.iconheart2 img{
+    width: 29px;
+    height: 26px;
+    padding-left: 180px;
+}
+.iconheart3 img{
+    width: 29px;
+    height: 26px;
+    padding-left: 180px;
+}
+.iconheart4 img{
+    width: 29px;
+    height: 26px;
+    padding-left: 180px;
+}
+.BtnBuy{
+    width: 193px;
+    height: 48px;
+    background-color: black;
+    color:white;
+    border-radius: 10px;
+}
+.InfoProduct4{
+    border:1px solid rgb(246, 246, 246);
+    width: 268px;
+    height: 432px;
+    gap:23px;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    background-color: rgb(246, 246, 246);
+}
+.ProductsInMainLine2{
+    margin-top:20px;
+    display:flex;
+    justify-content: center;
+    gap:30px;
+}
+.TitleDiscountProduct{
+    font-size: 20px;
+    margin-left:370px;
+    margin-top:30px;
+}
+.ProductDiscounted{
+    margin-top:20px;
+    display:flex;
+    justify-content: center;
+    gap:30px;
+    margin-bottom: 30px;
+}
+.InfoProductDiscounted{
+    border:1px solid rgb(246, 246, 246);
+    width: 268px;
+    height: 432px;
+    gap:23px;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    background-color: rgb(246, 246, 246);
+}
+.bannerbelow img{
+    width: 100%;
+    height: 100%;
+    display:block;
+}
+.footer{
+    width: 100%;
+    height: 464px;
+    background-color: black;
+    display:flex;
+    justify-content: space-around;
+    align-items: center;
+    gap:50px;
+}
+.logoInCol1{
+    padding-top: 100px;
+    display: flex;
+    gap:40px;
+}
+.col1 p{
+    padding-top:10px;
+}
+.col1 p{
+    color:white;
+}
+.col2 p{
+    color:white;
+    font-size: 15px;
+}
+.col2 h4{
+    color:white;
+}
+.col3 h4{
+    color:white;
+
+}
+.col3 p{
+    color: white;
+    font-size: 15px;
+}

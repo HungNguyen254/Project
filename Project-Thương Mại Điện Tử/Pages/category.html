@@ -5,6 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Category</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../Styles/category.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
         integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
@@ -29,7 +32,7 @@
             <hr class="line">
             <div class="underhead">
                 <h2>Danh mục</h2>
-                <button type="button" class="btnadd">Thêm mới danh mục</button>
+                <button type="button" class="btnadd" onclick="UpformAddcategory()">Thêm mới danh mục</button>
             </div>
             <div class="searchfilter">
                 <select name="" id="" class="selectbox">
@@ -38,12 +41,13 @@
                     <option value="Đang hoạt động">Đang hoạt động</option>
 
                 </select>
+                <i class="fa-solid fa-magnifying-glass" id="shape"></i>
                 <input type="search" class="searchbox" placeholder="Tìm kiếm danh mục theo tên">
             </div>
             <div class="DashBoard">
                 <div class="th">
-                    <p>Mã danh mục</p>
-                    <p>Tên danh mục</p>
+                    <p>Mã danh mục <i class="fa-solid fa-arrow-down"></i></p>
+                    <p>Tên danh mục <i class="fa-solid fa-arrow-down"></i></p>
                     <p>Trạng thái</p>
                     <p>Chức năng</p>
                 </div>
@@ -52,7 +56,7 @@
                     <p class="namecategory">Quần áo</p>
                     <p class="StatusActive"><span class="dotgreen"></span> Đang hoạt động</p>
                     <p><button id="btndelete"><img src="../Asset/Image/Button.png" alt=""></button>
-                        <button id="btnedit"><img src="../Asset/Image/_Button base.png" alt=""></button>
+                        <button id="btnedit" onclick="UpFormUpdateCategory()"><img src="../Asset/Image/_Button base.png" alt=""></button>
                     </p>
                 </div>
                 <hr class="LineInList">
@@ -100,7 +104,7 @@
                         <button id="btnedit"><img src="../Asset/Image/_Button base.png" alt=""></button>
                     </p>
                 </div>
-                <hr class="LineInList">
+                <!-- <hr class="LineInList">
                 <div class="ListCategories">
                     <p class="idcategory">DM007</p>
                     <p class="namecategory">Rau</p>
@@ -108,8 +112,8 @@
                     <p><button id="btndelete"><img src="../Asset/Image/Button.png" alt=""></button>
                         <button id="btnedit"><img src="../Asset/Image/_Button base.png" alt=""></button>
                     </p>
-                </div>
-                <hr class="LineInList">
+                </div> -->
+                <!-- <hr class="LineInList">
                 <div class="ListCategories">
                     <p class="idcategory">DM008</p>
                     <p class="namecategory">Điện thoại</p>
@@ -117,7 +121,7 @@
                     <p><button id="btndelete"><img src="../Asset/Image/Button.png" alt=""></button>
                         <button id="btnedit"><img src="../Asset/Image/_Button base.png" alt=""></button>
                     </p>
-                </div>
+                </div> -->
             </div>
             <div class="pageBut">
                 <p class="pagebutton"><i class="fa-solid fa-arrow-left"></i></p>
@@ -156,7 +160,7 @@
         </div>
         <hr class="LineInFormAddCategory">
         <div class="BtnInForm">
-            <button class="BtnCancel">Hủy</button>
+            <button class="BtnCancel" onclick="CloseformAddcategory()">Hủy</button>
             <button class="BtnConfirm">Thêm</button>
 
         </div>
@@ -165,9 +169,9 @@
         <h2>Cập nhật danh mục</h2><br>
 
         <label for="idcatoinput" class="AddIdCategory">Mã danh mục <span class="symbol">*</span></label><br>
-        <input type="text" name="idcatoinput" class="AddIdCategoryInput" placeholder="DM001"><br><br><br>
+        <input type="text" name="idcatoinput" class="AddIdCategoryInput" placeholder="  DM001"><br><br><br>
         <label for="namecatoinput" class="AddNameCategory">Tên Danh mục <span class="symbol">*</span></label><br><br>
-        <input type="text" name="namecatoinput" class="AddNameCategoryInput" placeholder="Quần áo">
+        <input type="text" name="namecatoinput" class="AddNameCategoryInput" placeholder="  Quần áo">
 
         <div class="chooseStatus">
             <p>Trạng thái</p><br>
@@ -184,7 +188,7 @@
         </div>
         <hr class="LineInFormAddCategory">
         <div class="BtnInForm">
-            <button class="BtnCancel">Hủy</button>
+            <button class="BtnCancel" onclick="CloseFormUpdateCategory()">Hủy</button>
             <button class="BtnConfirm">Thêm</button>
 
         </div>

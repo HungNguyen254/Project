@@ -27,7 +27,7 @@
         <div class="boardright">
             <div class="headboardright">
                 <i class="fa-solid fa-bell"></i>
-                <img src="../Asset/Image/10d5c319419f2137bf8772f28aaf576b74a68518.png" alt="">
+               <img src="../Asset/Image/10d5c319419f2137bf8772f28aaf576b74a68518.png" alt="" onclick ="ShowLogOutBtn()">
             </div>
             <hr class="line">
             <div class="underhead">
@@ -51,77 +51,17 @@
                     <p>Trạng thái</p>
                     <p>Chức năng</p>
                 </div>
-                <div class="ListCategories">
-                    <p class="idcategory">DM001</p>
+                <div id="ListCategories">
+                    <!-- <div class="row">
+                           <p class="idcategory">DM001</p>
                     <p class="namecategory">Quần áo</p>
                     <p class="StatusActive"><span class="dotgreen"></span> Đang hoạt động</p>
                     <p><button id="btndelete"><img src="../Asset/Image/Button.png" alt=""></button>
                         <button id="btnedit" onclick="UpFormUpdateCategory()"><img src="../Asset/Image/_Button base.png" alt=""></button>
                     </p>
+                    <hr class="LineInList">
+                    </div> -->
                 </div>
-                <hr class="LineInList">
-                <div class="ListCategories">
-                    <p class="idcategory">DM002</p>
-                    <p class="namecategory">Kính mắt</p>
-                    <p class="StatusInActive"><span class="dotred"></span>Ngừng hoạt động</p>
-                    <p><button id="btndelete"><img src="../Asset/Image/Button.png" alt=""></button>
-                        <button id="btnedit"><img src="../Asset/Image/_Button base.png" alt=""></button>
-                    </p>
-                </div>
-                <hr class="LineInList">
-                <div class="ListCategories">
-                    <p class="idcategory">DM003</p>
-                    <p class="namecategory">Giầy dép</p>
-                    <p class="StatusActive"><span class="dotgreen"></span> Đang hoạt động</p>
-                    <p><button id="btndelete"><img src="../Asset/Image/Button.png" alt=""></button>
-                        <button id="btnedit"><img src="../Asset/Image/_Button base.png" alt=""></button>
-                    </p>
-                </div>
-                <hr class="LineInList">
-                <div class="ListCategories">
-                    <p class="idcategory">DM004</p>
-                    <p class="namecategory">Thời trang nam</p>
-                    <p class="StatusInActive"><span class="dotred"></span> Ngừng hoạt động</p>
-                    <p><button id="btndelete"><img src="../Asset/Image/Button.png" alt=""></button>
-                        <button id="btnedit"><img src="../Asset/Image/_Button base.png" alt=""></button>
-                    </p>
-                </div>
-                <hr class="LineInList">
-                <div class="ListCategories">
-                    <p class="idcategory">DM005</p>
-                    <p class="namecategory">Thời trang nữ</p>
-                    <p class="StatusInActive"><span class="dotred"></span> Ngừng hoạt động</p>
-                    <p><button id="btndelete"><img src="../Asset/Image/Button.png" alt=""></button>
-                        <button id="btnedit"><img src="../Asset/Image/_Button base.png" alt=""></button>
-                    </p>
-                </div>
-                <hr class="LineInList">
-                <div class="ListCategories">
-                    <p class="idcategory">DM006</p>
-                    <p class="namecategory">Hoa quả</p>
-                    <p class="StatusInActive"><span class="dotred"></span>Ngừng hoạt động</p>
-                    <p><button id="btndelete"><img src="../Asset/Image/Button.png" alt=""></button>
-                        <button id="btnedit"><img src="../Asset/Image/_Button base.png" alt=""></button>
-                    </p>
-                </div>
-                <!-- <hr class="LineInList">
-                <div class="ListCategories">
-                    <p class="idcategory">DM007</p>
-                    <p class="namecategory">Rau</p>
-                    <p class="StatusActive"><span class="dotgreen"></span> Đang hoạt động</p>
-                    <p><button id="btndelete"><img src="../Asset/Image/Button.png" alt=""></button>
-                        <button id="btnedit"><img src="../Asset/Image/_Button base.png" alt=""></button>
-                    </p>
-                </div> -->
-                <!-- <hr class="LineInList">
-                <div class="ListCategories">
-                    <p class="idcategory">DM008</p>
-                    <p class="namecategory">Điện thoại</p>
-                    <p class="StatusInActive"><span class="dotred"></span> Ngừng hoạt động</p>
-                    <p><button id="btndelete"><img src="../Asset/Image/Button.png" alt=""></button>
-                        <button id="btnedit"><img src="../Asset/Image/_Button base.png" alt=""></button>
-                    </p>
-                </div> -->
             </div>
             <div class="pageBut">
                 <p class="pagebutton"><i class="fa-solid fa-arrow-left"></i></p>
@@ -133,6 +73,9 @@
                 <p class="pagebutton">...</p>
                 <p class="pagebutton">12</p>
                 <p class="pagebutton"><i class="fa-solid fa-arrow-right"></i></p>
+            </div>
+            <div class="LogOutButton">
+                <button type="button" class="btnLogOut" onclick="LogOut()">Đăng xuất</button>
             </div>
         </div>
     </div>

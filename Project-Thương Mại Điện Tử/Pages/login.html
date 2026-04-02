@@ -15,17 +15,20 @@
         <span class="valueinput">
              <label for="">Email</label><br>
         <input type="email" id="email" required><br>
+        <p class="error-emaillogin"></p>
         <label for="">Mật khẩu</label> <br>
         <input type="password" id="password" required><br>
+        <p class="error-passwordlogin"></p>
         </span>
         <span class="note">
             <input type="checkbox">
             <label for="">Nhớ tài khoản</label>
             <a href="http://" class="forgotlink">Quên mật khẩu</a><br>
         </span>
-        <button type="button"><a href="http://" class="titlebtn" style="text-decoration:none">Đăng nhập</a></button>
+        <button type="button" onclick="FormLogin()" class="btnlogin" >Đăng nhập</button>
         <p style="margin-left:100px;margin-top:10px">Bạn chưa có tài khoản? <a href="../Pages/register.html" class="registerlink">Đăng ký</a></p>
     </form>
     <script src="../JS/login.js"></script>
 </body>
 </html>
+    

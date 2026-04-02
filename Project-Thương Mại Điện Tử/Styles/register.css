@@ -4,8 +4,32 @@
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-size: 25px;
 }
+.error-firstname{
+    display:none;
+    color:red;
+}
+.error-lastname{
+    color:red;
+    display:none;
+}
+.error-email{
+    color:red;
+    display:none;
+}
+.error-password{
+    color:red;
+    display:none;
+}
+.error-checkpassword{
+    color:red;
+    display:none;
+}
+.error-checkbox{
+    color:red;
+    display:none;
+}
 .nameuser{
-    display: inline-block;
+    display: flex;
 
 }
 .title{
@@ -38,7 +62,7 @@ form{
 }
 
 .nameuser input{
-    display:inline-block;
+    display:inline;
     height: 48px;
     width: 266px;
 }
@@ -109,9 +133,9 @@ form{
     margin-top: 10px;
     margin-right: 350px;
 }
-.namelabel9{
-    margin-bottom: 100px;
-}
+/* .namelabel9{
+    padding-bottom: 100px;
+} */
 @media(max-width:600px){
     .nameuser input{
         width: 250px;
@@ -130,4 +154,22 @@ form{
         width: 40px;
         height: 40px;
     }
+}
+.SignUpSucces{
+    border:1px solid rgb(0, 122, 255);
+    width: 250px;
+    height: 50px;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    background-color: rgb(0, 122, 255);
+    color:white;
+    position: absolute;
+    top:10px;
+    right: 10px;
+    display:none;
+}
+.SignUpSucces p{
+    font-size: 15px;
 }

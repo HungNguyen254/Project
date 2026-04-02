@@ -15,28 +15,37 @@
     </span>
     <form action="">
         <span class="nameuser">
-            <label for="">Họ và tên đệm</label><br>
-            <input type="text" class="nameuserinput" id="firstnameuser">
-            <span class="name">
-                <label for="" class="namelabel9">Tên</label><br>
+            <div class="firstname">
+                <label for="firstnameuser">Họ và tên đệm</label><br>
+                <input type="text" class="nameuserinput" id="firstnameuser">
+                <p class="error-firstname"></p>
+            </div>
+            <div class="name">
+                <label for="lastnameuser" class="namelabel9">Tên</label><br>
                 <input type="text" class="nameuserinput" id="lastnameuser"><br>
-            </span>
+                <p class="error-lastname"></p>
+            </div>
         </span>
-        <label class="namelabel1" for="">Email</label>
+        <label class="namelabel1" for="emailuser">Email</label>
         <input type="email" class="userinput" id="emailuser" required>
-        <label class="namelabel2" for="">Nhập mật khẩu</label>
+        <p class="error-email"></p>
+        <label class="namelabel2" for="password">Nhập mật khẩu</label>
         <input type="password" class="userinput" id="password" required>
-        <label class="namelabel" for="">Xác nhận lại mật khẩu</label>
+        <p class="error-password"></p>
+        <label class="namelabel" for="checkpassword">Xác nhận lại mật khẩu</label>
         <input type="password" class="userinput" id="checkpassword" required><br>
+        <p class="error-checkpassword"></p>
         <span class="check">
-            <input class="boxcheck" type="checkbox">
-            <label for="" class="checkdeal">Bạn đồng ý với <a href="http://" class="checkdeal" style="text-decoration:none">chính sách và điều
-                    khoản</a></label><br>
+            <input class="boxcheck" type="checkbox" id="checkboxsign">
+            <label for="" class="checkdeal">Bạn đồng ý với <a href="http://" class="checkdeal" style="text-decoration:none">chính sách và điều khoản</a></label><br>
+            <p class="error-checkbox"></p>
         </span>
-        <button type="submit" class="register">Đăng ký</button>
+        <button type="button" class="register" onclick="FormRegister()">Đăng ký</button>
         <p class="noteaccount">Bạn đã có tài khoản? <a href="./login.html" class="loginpage">Đăng nhập</a></p>
     </form>
-
+    <div class="SignUpSucces">
+        <p>✅ Bạn đã đăng ký thành công</p>
+    </div>
     <script src="../JS/register.js"></script>
 </body>
 

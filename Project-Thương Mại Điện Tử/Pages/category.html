@@ -6,12 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Category</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="../Styles/category.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
         integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 </head>
 
 <body>
@@ -27,7 +31,7 @@
         <div class="boardright">
             <div class="headboardright">
                 <i class="fa-solid fa-bell"></i>
-               <img src="../Asset/Image/10d5c319419f2137bf8772f28aaf576b74a68518.png" alt="" onclick ="ShowLogOutBtn()">
+                <img src="../Asset/Image/10d5c319419f2137bf8772f28aaf576b74a68518.png" alt="" onclick="ShowLogOutBtn()">
             </div>
             <hr class="line">
             <div class="underhead">
@@ -35,14 +39,15 @@
                 <button type="button" class="btnadd" onclick="UpformAddcategory()">Thêm mới danh mục</button>
             </div>
             <div class="searchfilter">
-                <select name="" id="SelectBox" class="selectbox" onclick="FilterStatus()">
+                <select name="" id="SelectBox" class="selectbox" onchange="FilterStatus()">
                     <option value="Tất cả">Tất cả</option>
-                    <option value="Ngừng hoạt động">Ngừng hoạt động</option>
-                    <option value="Đang hoạt động">Đang hoạt động</option>
+                    <option value="INACTIVE">Ngừng hoạt động</option>
+                    <option value="ACTIVE">Đang hoạt động</option>
 
                 </select>
                 <i class="fa-solid fa-magnifying-glass" id="shape"></i>
-                <input type="search" class="searchbox1" id="SearchBox" placeholder="Tìm kiếm danh mục theo tên" oninput="SearchCategoryByName()">
+                <input type="search" class="searchbox1" id="SearchBox" placeholder="Tìm kiếm danh mục theo tên"
+                    oninput="SearchCategoryByName()">
             </div>
             <div class="DashBoard">
                 <div class="th">
@@ -82,20 +87,20 @@
     <div class="FormAddCategory">
         <h2>Thêm mới danh mục</h2><br>
 
-        <label for="idcatoinput" class="AddIdCategory" >Mã danh mục <span class="symbol">*</span></label><br>
+        <label for="idcatoinput" class="AddIdCategory">Mã danh mục <span class="symbol">*</span></label><br>
         <input type="text" name="idcatoinput" class="AddIdCategoryInput" id="AddIdCategory"><br><br><br>
-        <label for="namecatoinput" class="AddNameCategory" >Tên Danh mục <span class="symbol">*</span></label><br><br>
+        <label for="namecatoinput" class="AddNameCategory">Tên Danh mục <span class="symbol">*</span></label><br><br>
         <input type="text" name="namecatoinput" class="AddNameCategoryInput" id="AddNameCategory">
 
         <div class="chooseStatus">
             <p>Trạng thái</p><br>
-            <label class="radio" >
+            <label class="radio">
                 <input type="radio" name="status" id="radio1" value="Active">
                 <span class="checkmark"></span>
                 Đang hoạt động
             </label>
 
-            <label class="radio" >
+            <label class="radio">
                 <input type="radio" id="radio2" name="status" value="InActive">
                 <span class="checkmark"></span>
                 Ngừng hoạt động
@@ -112,19 +117,21 @@
         <h2>Cập nhật danh mục</h2><br>
 
         <label for="idcatoinput" class="AddIdCategory">Mã danh mục <span class="symbol">*</span></label><br>
-        <input type="text" name="idcatoinput" class="AddIdCategoryInput" id="UpdateIdCategoryInput" placeholder="  DM001"><br><br><br>
+        <input type="text" name="idcatoinput" class="AddIdCategoryInput" id="UpdateIdCategoryInput"
+            placeholder="  DM001"><br><br><br>
         <label for="namecatoinput" class="AddNameCategory">Tên Danh mục <span class="symbol">*</span></label><br><br>
-        <input type="text" name="namecatoinput" class="AddNameCategoryInput" id="UpdateNameCategoryInput" placeholder="  Quần áo">
+        <input type="text" name="namecatoinput" class="AddNameCategoryInput" id="UpdateNameCategoryInput"
+            placeholder="  Quần áo">
 
         <div class="chooseStatus">
             <p>Trạng thái</p><br>
             <label class="radio">
-                <input type="radio" name="status" id="radio1" value="Active">
+                <input type="radio" name="status" id="radio3" value="Active">
                 <span class="checkmark"></span>
                 Đang hoạt động
             </label>
             <label class="radio">
-                <input type="radio" name="status" id="radio2" value="InActive">
+                <input type="radio" name="status" id="radio4" value="InActive">
                 <span class="checkmark"></span>
                 Ngừng hoạt động
             </label>
@@ -136,7 +143,20 @@
 
         </div>
     </div>
+    <div id="confirmBox" class="overlay">
+    <div class="confirm-modal">
+        <div class="icon">!</div>
+
+        <h3>Xác nhận</h3>
+        <p>Bạn có chắc chắn muốn xóa sản phẩm Tạo đó khỏi hệ thống không?</p>
+
+        <div class="actions">
+            <button class="btn-cancel" onclick="CloseConfirmDelete()">Hủy</button>
+            <button class="btn-delete" onclick="ConfirmDelete()">Xóa</button>
+        </div>
+    </div>
+</div>
     <script src="../JS/category.js"></script>
-</body> 
+</body>
 
 </html>

@@ -35,14 +35,14 @@
                 <button type="button" class="btnadd" onclick="UpformAddcategory()">Thêm mới danh mục</button>
             </div>
             <div class="searchfilter">
-                <select name="" id="" class="selectbox">
+                <select name="" id="SelectBox" class="selectbox" onclick="FilterStatus()">
                     <option value="Tất cả">Tất cả</option>
                     <option value="Ngừng hoạt động">Ngừng hoạt động</option>
                     <option value="Đang hoạt động">Đang hoạt động</option>
 
                 </select>
                 <i class="fa-solid fa-magnifying-glass" id="shape"></i>
-                <input type="search" class="searchbox" placeholder="Tìm kiếm danh mục theo tên">
+                <input type="search" class="searchbox1" id="SearchBox" placeholder="Tìm kiếm danh mục theo tên" oninput="SearchCategoryByName()">
             </div>
             <div class="DashBoard">
                 <div class="th">
@@ -82,21 +82,21 @@
     <div class="FormAddCategory">
         <h2>Thêm mới danh mục</h2><br>
 
-        <label for="idcatoinput" class="AddIdCategory">Mã danh mục <span class="symbol">*</span></label><br>
-        <input type="text" name="idcatoinput" class="AddIdCategoryInput"><br><br><br>
-        <label for="namecatoinput" class="AddNameCategory">Tên Danh mục <span class="symbol">*</span></label><br><br>
-        <input type="text" name="namecatoinput" class="AddNameCategoryInput">
+        <label for="idcatoinput" class="AddIdCategory" >Mã danh mục <span class="symbol">*</span></label><br>
+        <input type="text" name="idcatoinput" class="AddIdCategoryInput" id="AddIdCategory"><br><br><br>
+        <label for="namecatoinput" class="AddNameCategory" >Tên Danh mục <span class="symbol">*</span></label><br><br>
+        <input type="text" name="namecatoinput" class="AddNameCategoryInput" id="AddNameCategory">
 
         <div class="chooseStatus">
             <p>Trạng thái</p><br>
-            <label class="radio">
-                <input type="radio" name="status" checked>
+            <label class="radio" >
+                <input type="radio" name="status" id="radio1" value="Active">
                 <span class="checkmark"></span>
                 Đang hoạt động
             </label>
 
-            <label class="radio">
-                <input type="radio" name="status">
+            <label class="radio" >
+                <input type="radio" id="radio2" name="status" value="InActive">
                 <span class="checkmark"></span>
                 Ngừng hoạt động
             </label>
@@ -104,7 +104,7 @@
         <hr class="LineInFormAddCategory">
         <div class="BtnInForm">
             <button class="BtnCancel" onclick="CloseformAddcategory()">Hủy</button>
-            <button class="BtnConfirm">Thêm</button>
+            <button class="BtnConfirm" onclick="AddCategories()">Thêm</button>
 
         </div>
     </div>
@@ -112,19 +112,19 @@
         <h2>Cập nhật danh mục</h2><br>
 
         <label for="idcatoinput" class="AddIdCategory">Mã danh mục <span class="symbol">*</span></label><br>
-        <input type="text" name="idcatoinput" class="AddIdCategoryInput" placeholder="  DM001"><br><br><br>
+        <input type="text" name="idcatoinput" class="AddIdCategoryInput" id="UpdateIdCategoryInput" placeholder="  DM001"><br><br><br>
         <label for="namecatoinput" class="AddNameCategory">Tên Danh mục <span class="symbol">*</span></label><br><br>
-        <input type="text" name="namecatoinput" class="AddNameCategoryInput" placeholder="  Quần áo">
+        <input type="text" name="namecatoinput" class="AddNameCategoryInput" id="UpdateNameCategoryInput" placeholder="  Quần áo">
 
         <div class="chooseStatus">
             <p>Trạng thái</p><br>
             <label class="radio">
-                <input type="radio" name="status" checked>
+                <input type="radio" name="status" id="radio1" value="Active">
                 <span class="checkmark"></span>
                 Đang hoạt động
             </label>
             <label class="radio">
-                <input type="radio" name="status">
+                <input type="radio" name="status" id="radio2" value="InActive">
                 <span class="checkmark"></span>
                 Ngừng hoạt động
             </label>
@@ -132,11 +132,11 @@
         <hr class="LineInFormAddCategory">
         <div class="BtnInForm">
             <button class="BtnCancel" onclick="CloseFormUpdateCategory()">Hủy</button>
-            <button class="BtnConfirm">Thêm</button>
+            <button class="BtnConfirm" onclick="ConfirmUpdate()">Cập nhật</button>
 
         </div>
     </div>
     <script src="../JS/category.js"></script>
-</body>
+</body> 
 
 </html>

@@ -24,13 +24,13 @@ function FormRegister(){
     let SignUp = document.getElementById("SignUpSucces");
     if(FirstNameUser.value == ""){
         document.querySelector(".error-firstname").style.display = "block";
-        document.querySelector(".error-firstname").innerHTML = "Họ và tên đệm không được để trống";
+        document.querySelector(".error-firstname").innerHTML = "Họ và tên đệm không được <br> để trống";
         return;
     }
     document.querySelector(".error-firstname").style.display = "none";
     if(LastNameUser.value == ""){
         document.querySelector(".error-lastname").style.display = "block"
-        document.querySelector(".error-lastname").innerHTML = "tên không được để trống"
+        document.querySelector(".error-lastname").innerHTML = "tên không được để <br> trống"
         return;
     }
     document.querySelector(".error-lastname").style.display = "none";
@@ -49,7 +49,7 @@ function FormRegister(){
     }
     document.querySelector(".error-password").style.display = "none";
 
-    if(UserPassword.length < 8){
+    if(UserPassword.value.length < 8){
         document.querySelector(".error-password").style.display = "block"
         document.querySelector(".error-password").innerHTML = "Mật khẩu phải tối thiểu 8 ký tự"
         return;
@@ -70,7 +70,7 @@ function FormRegister(){
     }
     if(!CheckBoxSignUp.checked){
          document.querySelector(".error-checkpassword").style.display = "block"
-        document.querySelector(".error-checkpassword").innerHTML = "Bạn chưa đồng ý với điều khoản của chúng tôi"
+        document.querySelector(".error-checkpassword").innerHTML = "Bạn chưa đồng ý với điều khoản và chính sách của web"
         return;
     }
     document.querySelector(".error-checkpassword").style.display = "none";

@@ -116,7 +116,7 @@
 .searchfilter input{
     align-items: center;
 }
-.searchbox{
+.searchbox1{
     padding:10px;
     border:1px solid #ccc;
     border-radius: 10px;
@@ -164,6 +164,9 @@
 }
 #btndelete:hover{
     cursor: pointer;
+    border:1px solid #ccc;
+    transition: all 2s;
+
 }
 #btnedit{
     margin-right: 10px;
@@ -334,7 +337,13 @@
   cursor: pointer;
   font-size: 14px;
 }
-
+.radio2 {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  font-size: 14px;
+}
 .radio input {
   display: none;
 }

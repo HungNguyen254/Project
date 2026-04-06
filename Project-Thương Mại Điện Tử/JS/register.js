@@ -1,18 +1,19 @@
-const users= [
-    {
-id: 1,
-first_name: "Nguyễn Văn",
-last_name: "Nam",
-gender: 0,
-date_of_birth: "20/02/2023",
-address: "Thanh Xuân, Hà Nội",
-avatar: "https://example.com/avatar.jpg",
-email: "nvnam@gmail.com",
-password: "123456",
-phone_number: "0988787671",
-created_at: "2021-01-01T00:00:00Z"
-}
-];
+// const users= [
+//     {
+// id: 1,
+// first_name: "Nguyễn Văn",
+// last_name: "Nam",
+// gender: 0,
+// date_of_birth: "20/02/2023",
+// address: "Thanh Xuân, Hà Nội",
+// avatar: "https://example.com/avatar.jpg",
+// email: "nvnam@gmail.com",
+// password: "123456",
+// phone_number: "0988787671",
+// created_at: "2021-01-01T00:00:00Z"
+// }
+// ];
+const users = JSON.parse(localStorage.getItem("Users"))||[];
 let valid;
 function FormRegister(){
     let FirstNameUser = document.getElementById("firstnameuser");
@@ -40,6 +41,13 @@ function FormRegister(){
         document.querySelector(".error-email").innerHTML = "Email không được để trống"
         return;
     }
+    users.find((value)=>{
+        if(EmailUser.value == value.email){
+        document.querySelector(".error-email").style.display = "block"
+        document.querySelector(".error-email").innerHTML = "Email đã được đăng ký"
+        return;
+        }
+    })
     document.querySelector(".error-email").style.display = "none";
 
     if(UserPassword.value == ""){
@@ -73,6 +81,7 @@ function FormRegister(){
         document.querySelector(".error-checkpassword").innerHTML = "Bạn chưa đồng ý với điều khoản và chính sách của web"
         return;
     }
+    
     document.querySelector(".error-checkpassword").style.display = "none";
         let newuser = {
             id: users.length !==0 ?users[users.length-1].id +1:1,
@@ -82,7 +91,16 @@ function FormRegister(){
             password:UserPassword.value,
             created_at:new Date(),            
         };
-        document.querySelector(".SignUpSucces").style.display = "flex";
+         Toastify({
+                text: "Đăng ký thành công",
+                duration: 3000,
+                gravity: "top",
+                position: "right",
+                backgroundColor: "#06cd2e",
+                style: {
+                    borderRadius: "12px"
+                }
+            }).showToast();
         users.push(newuser);
         localStorage.setItem("Users",JSON.stringify(users));
         FirstNameUser.value = "";

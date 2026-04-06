@@ -5,26 +5,70 @@ function FormLogin(){
     let CheckEmailLogin = document.getElementById("email");
     let CheckPassWordLogin = document.getElementById("password");
     if(CheckEmailLogin.value == ""){
-        document.querySelector(".error-emaillogin").style.display = "block";
-        document.querySelector(".error-emaillogin").innerHTML = "Email Không được để trống";
+        Toastify({
+                text: "Email không được để trống",
+                duration: 3000,
+                gravity: "top",
+                position: "right",
+                backgroundColor: "#cd1706",
+                style: {
+                    borderRadius: "12px"
+                }
+            }).showToast();
         return;
     }
     if(CheckPassWordLogin.value == ""){
-        document.querySelector(".error-passwordlogin").style.display = "block";
-        document.querySelector(".error-passwordlogin").innerHTML = "Mật khẩu Không được để trống";
+       Toastify({
+                text: "Mật khẩu không được để trống",
+                duration: 3000,
+                gravity: "top",
+                position: "right",
+                backgroundColor: "#cd1706",
+                style: {
+                    borderRadius: "12px"
+                }
+            }).showToast();
         return;
     }
     let CheckLegitEmail = users.find((value)=>value.email == CheckEmailLogin.value ) 
     if(!CheckLegitEmail){
-        document.querySelector(".error-passwordlogin").style.display = "block";
-        document.querySelector(".error-passwordlogin").innerHTML = "Email hoăc mật khẩu Không đúng";
+       Toastify({
+                text: "Email/Mật khẩu không đúng",
+                duration: 3000,
+                gravity: "top",
+                position: "right",
+                backgroundColor: "#cd1706",
+                style: {
+                    borderRadius: "12px"
+                }
+            }).showToast();
         return;
     }
     let CheckLegitPassword = users.find((value)=>value.password == CheckPassWordLogin.value)
     if(!CheckLegitPassword){
-        document.querySelector(".error-passwordlogin").style.display = "block";
-        document.querySelector(".error-passwordlogin").innerHTML = "Email hoặc mật khẩu không đúng";
+       Toastify({
+                text: "Email/Mật khẩu không đúng",
+                duration: 3000,
+                gravity: "top",
+                position: "right",
+                backgroundColor: "#cd1706",
+                style: {
+                    borderRadius: "12px"
+                }
+            }).showToast();
         return;
     }
-    window.location.href = "../Pages/category.html"
+    Toastify({
+                text: "Đăng nhập thành công",
+                duration: 3000,
+                gravity: "top",
+                position: "right",
+                backgroundColor: "#20cd06",
+                style: {
+                    borderRadius: "12px"
+                }
+            }).showToast();
+    setTimeout(()=>{
+            window.location.href = "../Pages/category.html"
+        },2000)
 }

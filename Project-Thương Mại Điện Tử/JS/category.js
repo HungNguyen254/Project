@@ -15,13 +15,22 @@
 // status: "INACTIVE",
 // created_at: "2021-01-01T00:00:00Z"
 // },
+// {
+//     id: 3,
+// categoryCode: "DM003",
+// categoryName: "Tất cả",
+// image: "https://example.com/image.jpg",
+// status: "INACTIVE",
+// created_at: "2021-01-01T00:00:00Z"
+// }
 // ];
 // localStorage.setItem("categories",JSON.stringify(categories))
 const categories = JSON.parse(localStorage.getItem("categories")) || [];
+const Products = JSON.parse(localStorage.getItem("Products"))||[];
 let Valid = -1;
 let ValidDelete = -1;
 let currentPage = 1;
-const perPage = 2;
+const perPage = 5;
 function UpformAddcategory() {
     document.querySelector(".FormAddCategory").style.display = "block"
 }
@@ -51,9 +60,19 @@ function ShowLogOutBtn() {
     }
 }
 function LogOut() {
-    window.location.href = "./login.html"
-}
-function SortName() {
+    setTimeout(()=>{
+            window.location.href = "./login.html";
+        },2000)
+     Toastify({
+            text: "Đăng xuất thành công",
+            duration: 3000,
+            gravity: "top", 
+            position: "right",
+            backgroundColor: "#28a748",
+            style: {
+                borderRadius: "12px"
+            }
+        }).showToast();
 }
 RenderCategories(categories);
 function SearchCategoryByName() {
@@ -110,8 +129,8 @@ function AddCategories() {
         Toastify({
             text: "Tên danh mục không được để trống",
             duration: 3000,
-            gravity: "top", // top / bottom
-            position: "right", // left / center / right
+            gravity: "top",
+            position: "right",
             backgroundColor: "#a72828",
             style: {
                 borderRadius: "12px"
@@ -124,8 +143,8 @@ function AddCategories() {
         Toastify({
             text: "Mã danh mục không được để trống",
             duration: 3000,
-            gravity: "top", // top / bottom
-            position: "right", // left / center / right
+            gravity: "top", 
+            position: "right",
             backgroundColor: "#a72828",
             style: {
                 borderRadius: "12px"
@@ -137,10 +156,10 @@ function AddCategories() {
     categories.find((value) => {
         if (value.categoryName == NewNameCategory.value) {
             Toastify({
-                text: "Tên danh mục không được trùng",
+                text: "Tên danh mục đã được sử dụng",
                 duration: 3000,
-                gravity: "top", // top / bottom
-                position: "right", // left / center / right
+                gravity: "top", 
+                position: "right", 
                 backgroundColor: "#a72828",
                 style: {
                     borderRadius: "12px"
@@ -153,10 +172,10 @@ function AddCategories() {
     categories.find((value) => {
         if (value.categoryCode == NewIdCategory.value) {
             Toastify({
-                text: "Mã danh mục không được trùng",
+                text: "Mã danh mục đã được sử dụng",
                 duration: 3000,
-                gravity: "top", // top / bottom
-                position: "right", // left / center / right
+                gravity: "top", 
+                position: "right",
                 backgroundColor: "#a72828",
                 style: {
                     borderRadius: "12px"
@@ -185,8 +204,8 @@ function AddCategories() {
         Toastify({
             text: "Thêm sản phẩm thành công!",
             duration: 3000,
-            gravity: "top", // top / bottom
-            position: "right", // left / center / right
+            gravity: "top",
+            position: "right",
             backgroundColor: "#28a745",
             style: {
                 borderRadius: "12px"
@@ -241,9 +260,9 @@ function ConfirmUpdate() {
         return;
     }
     categories.find((value) => {
-        if (UpdateNameCategory.value == value.categoryName) {
+        if (UpdateNameCategory.value == value.categoryName && value.id !== categories[Valid].id) {
             Toastify({
-                text: "Tên danh mục không được phép trùng",
+                text: "Tên danh mục đã được sử dụng",
                 duration: 3000,
                 gravity: "top",
                 position: "right",
@@ -257,9 +276,9 @@ function ConfirmUpdate() {
         }
     })
     categories.find((value) => {
-        if (UpdateIdCategory.value == value.categoryCode) {
+        if (UpdateIdCategory.value == value.categoryCode && value.id !== categories[Valid].id) {
             Toastify({
-                text: "Tên danh mục không được phép trùng",
+                text: "Tên danh mục đã được sử dụng",
                 duration: 3000,
                 gravity: "top",
                 position: "right",
@@ -287,8 +306,8 @@ function ConfirmUpdate() {
         Toastify({
             text: "Cập nhật thành công!",
             duration: 3000,
-            gravity: "top", // top / bottom
-            position: "right", // left / center / right
+            gravity: "top",
+            position: "right",
             backgroundColor: "#28a745",
             style: {
                 borderRadius: "12px"
@@ -300,6 +319,20 @@ function ConfirmUpdate() {
 
 };
 function ConfirmDelete() {
+    if(categories[ValidDelete].status === "ACTIVE"){
+        Toastify({
+            text: "Danh mục vẫn còn sản phẩm",
+            duration: 3000,
+            gravity: "top",
+            position: "right",
+            backgroundColor: "#a72828",
+            style: {
+                borderRadius: "12px"
+            }
+        }).showToast();
+    CloseConfirmDelete();
+        return;
+    }
     categories.splice(ValidDelete, 1);
     localStorage.setItem("categories", JSON.stringify(categories));
     RenderCategories(categories);

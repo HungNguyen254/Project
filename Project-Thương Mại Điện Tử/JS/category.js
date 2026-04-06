@@ -20,13 +20,15 @@
 const categories = JSON.parse(localStorage.getItem("categories")) || [];
 let Valid = -1;
 let ValidDelete = -1;
+let currentPage = 1;
+const perPage = 2;
 function UpformAddcategory() {
     document.querySelector(".FormAddCategory").style.display = "block"
 }
-function CloseConfirmDelete(){
+function CloseConfirmDelete() {
     document.querySelector(".overlay").style.display = "none";
 }
-function OpenFormConfirmDelete(index){
+function OpenFormConfirmDelete(index) {
     document.querySelector(".overlay").style.display = "block";
     ValidDelete = index;
 }
@@ -80,14 +82,18 @@ function FilterStatus() {
 function RenderCategories(categories) {
     let ListCategory = document.getElementById("ListCategories")
     let sorted = categories.sort((a, b) => a.categoryName.localeCompare(b.categoryName));
-    ListCategory.innerHTML = sorted
+    const start = (currentPage - 1) * perPage;
+    const end = start + perPage;
+    const dataShow = sorted.slice(start, end);
+    ListCategory.innerHTML = dataShow
         .map((value, index) => {
+            const realIndex = start + index;
             return `<div class="row">
                     <p class="idcategory">${value.categoryCode}</p>
                     <p class="namecategory">${value.categoryName}</p>
                     <p ${value.status == "ACTIVE" ? "class=StatusActive" : "class=StatusInActive"}><span ${value.status == "ACTIVE" ? "class=dotgreen" : "class=dotred"}></span> ${value.status == "ACTIVE" ? "Đang hoạt động" : "Ngừng hoạt động"}</p>
-                    <p><button id="btndelete" onclick="OpenFormConfirmDelete(${index})"><img src="../Asset/Image/Button.png" alt=""></button>
-                        <button id="btnedit" onclick="UpdateCategory(${index})"><img src="../Asset/Image/_Button base.png" alt=""></button>
+                    <p><button id="btndelete" onclick="OpenFormConfirmDelete(${realIndex})"><img src="../Asset/Image/Button.png" alt=""></button>
+                        <button id="btnedit" onclick="UpdateCategory(${realIndex})"><img src="../Asset/Image/_Button base.png" alt=""></button>
                     </p>
                     <hr class="LineInList">
                 </div>`
@@ -128,36 +134,36 @@ function AddCategories() {
         LegitAdd = false;
         return;
     }
-    categories.find((value)=>{
-        if(value.categoryName == NewNameCategory.value){
+    categories.find((value) => {
+        if (value.categoryName == NewNameCategory.value) {
             Toastify({
-            text: "Tên danh mục không được trùng",
-            duration: 3000,
-            gravity: "top", // top / bottom
-            position: "right", // left / center / right
-            backgroundColor: "#a72828",
-            style: {
-                borderRadius: "12px"
-            }
-        }).showToast();
-        LegitAdd = false;
-        return;
+                text: "Tên danh mục không được trùng",
+                duration: 3000,
+                gravity: "top", // top / bottom
+                position: "right", // left / center / right
+                backgroundColor: "#a72828",
+                style: {
+                    borderRadius: "12px"
+                }
+            }).showToast();
+            LegitAdd = false;
+            return;
         }
     })
-    categories.find((value)=>{
-        if(value.categoryCode == NewIdCategory.value){
+    categories.find((value) => {
+        if (value.categoryCode == NewIdCategory.value) {
             Toastify({
-            text: "Mã danh mục không được trùng",
-            duration: 3000,
-            gravity: "top", // top / bottom
-            position: "right", // left / center / right
-            backgroundColor: "#a72828",
-            style: {
-                borderRadius: "12px"
-            }
-        }).showToast();
-        LegitAdd = false;
-        return;
+                text: "Mã danh mục không được trùng",
+                duration: 3000,
+                gravity: "top", // top / bottom
+                position: "right", // left / center / right
+                backgroundColor: "#a72828",
+                style: {
+                    borderRadius: "12px"
+                }
+            }).showToast();
+            LegitAdd = false;
+            return;
         }
     })
     if (LegitAdd == true) {
@@ -187,10 +193,10 @@ function AddCategories() {
             }
         }).showToast();
         RenderCategories(categories)
-    document.querySelector(".FormAddCategory").style.display = "none"
+        document.querySelector(".FormAddCategory").style.display = "none"
     }
 
-    
+
 }
 function UpdateCategory(index) {
     document.querySelector(".FormUpdateCategory").style.display = "block";
@@ -293,10 +299,54 @@ function ConfirmUpdate() {
     }
 
 };
-function ConfirmDelete(){
+function ConfirmDelete() {
     categories.splice(ValidDelete, 1);
     localStorage.setItem("categories", JSON.stringify(categories));
     RenderCategories(categories);
     ValidDelete = -1;
     CloseConfirmDelete();
+}
+function renderPagination() {
+    const totalPages = Math.ceil(categories.length / perPage);
+    const container = document.getElementById("pagination");
+    let html = "";
+    // Prev
+    html += `
+    <p class="pagebutton ${currentPage === 1 ? "disabled" : ""}" 
+       onclick="changePage(${currentPage - 1})">
+       <i class="fa-solid fa-arrow-left"></i>
+    </p>`;
+    for (let i = 1; i <= totalPages; i++) {
+        if (
+            i === 1 ||
+            i === totalPages ||
+            (i >= currentPage - 2 && i <= currentPage + 2)
+        ) {
+            html += `
+        <p class="pagebutton ${i === currentPage ? "active" : ""}" 
+           onclick="changePage(${i})">
+           ${i}
+        </p>
+      `;
+        } else if (i === currentPage - 3 || i === currentPage + 3) {
+            html += `<p class="pagebutton">...</p>`;
+        }
+    }
+    // Next
+    html += `
+    <p class="pagebutton ${currentPage === totalPages ? "disabled" : ""}" 
+       onclick="changePage(${currentPage + 1})">
+       <i class="fa-solid fa-arrow-right"></i>
+    </p>`;
+    container.innerHTML = html;
+};
+renderPagination();
+function changePage(page) {
+  const totalPages = Math.ceil(categories.length / perPage);
+
+  if (page < 1 || page > totalPages) return;
+
+  currentPage = page;
+  RenderCategories(categories);
+  renderPagination();
 }

@@ -17,13 +17,13 @@ function FormLogin(){
     let CheckLegitEmail = users.find((value)=>value.email == CheckEmailLogin.value ) 
     if(!CheckLegitEmail){
         document.querySelector(".error-passwordlogin").style.display = "block";
-        document.querySelector(".error-passwordlogin").innerHTML = "Email hoăc mật khẩu Không đúng1";
+        document.querySelector(".error-passwordlogin").innerHTML = "Email hoăc mật khẩu Không đúng";
         return;
     }
     let CheckLegitPassword = users.find((value)=>value.password == CheckPassWordLogin.value)
     if(!CheckLegitPassword){
         document.querySelector(".error-passwordlogin").style.display = "block";
-        document.querySelector(".error-passwordlogin").innerHTML = "Email hoặc mật khẩu không đúng2";
+        document.querySelector(".error-passwordlogin").innerHTML = "Email hoặc mật khẩu không đúng";
         return;
     }
     window.location.href = "../Pages/category.html"

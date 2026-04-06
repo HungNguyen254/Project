@@ -74,7 +74,6 @@ function FormRegister(){
         return;
     }
     document.querySelector(".error-checkpassword").style.display = "none";
-
         let newuser = {
             id: users.length !==0 ?users[users.length-1].id +1:1,
             first_name: FirstNameUser.value,

@@ -96,14 +96,21 @@ function FilterStatus() {
         let StillWork = categories.filter((value) => value.status == "ACTIVE");
         RenderCategories(StillWork);
     }
+    if(SelectBoxValue === "SortByName"){
+        let SortedByName = categories.sort((a,b)=>a.categoryName.localeCompare(b.categoryName));
+        RenderCategories(SortedByName);
+    }
+    if(SelectBoxValue === "SortByCreateAt"){
+        let SortedByCreateAt = categories.sort((a,b)=>a.createAt-b.createAt)
+        RenderCategories(SortedByCreateAt);
+    }
 }
 
 function RenderCategories(categories) {
     let ListCategory = document.getElementById("ListCategories")
-    let sorted = categories.sort((a, b) => a.categoryName.localeCompare(b.categoryName));
     const start = (currentPage - 1) * perPage;
     const end = start + perPage;
-    const dataShow = sorted.slice(start, end);
+    const dataShow = categories.slice(start, end)
     ListCategory.innerHTML = dataShow
         .map((value, index) => {
             const realIndex = start + index;
@@ -198,6 +205,7 @@ function AddCategories() {
             categoryCode: NewIdCategory.value,
             categoryName: NewNameCategory.value,
             status: value,
+            createAt:new Date(),
         }
         categories.push(NewCategory);
         localStorage.setItem("categories", JSON.stringify(categories));

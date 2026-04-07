@@ -22,7 +22,7 @@
             </p>
             <p class="Categories"><img src="../Asset/icon/Cash.png" alt=""><a href="../Pages/category.html"
                     class="CategoryLink">Danh mục</a></p>
-            <p class="Product"><img src="../Asset/icon/IconProduct.png" alt=""><a href="http://" class="productlink">Sản
+            <p class="Product"><img src="../Asset/icon/IconProduct.png" alt=""><a href="../Pages/" class="productlink">Sản
                     phẩm</a>
             </p>
         </div>
@@ -43,10 +43,14 @@
                     <!-- <option value="Ngừng hoạt động"></option>
                     <option value="Đang hoạt động"></option> -->
                 </select>
-                <select name="" id="" class="selectbox">
+                <select name="" id="SelectBoxStatus" class="selectbox" onchange="FilterStatusProducts()">
                     <option value="Tất cả">Lọc theo trạng thái</option>
-                    <option value="Ngừng hoạt động"></option>
-                    <option value="Đang hoạt động"></option>
+                    <option value="INACTIVE">Ngừng hoạt động</option>
+                    <option value="ACTIVE">Đang hoạt động</option>
+                    <option value="SortByName">Sắp xếp theo tên</option>
+                    <option value="SortByPrice">Sắp xếp theo giá</option>
+                    <option value="SortByDate">Sắp xếp theo thời gian tạo</option>
+
                 </select>
                 <input type="search" class="searchbox" id="SearchBox" placeholder="Tìm kiếm sản phẩm theo tên " oninput="SearchProductByName()">
             </div>
@@ -159,34 +163,34 @@
     <div class="UpdateProduct">
         <div class="headtitle">
             <h2>Cập Nhật sản phẩm</h2>
-            <button class="btncancel">X</button>
+            <button class="btncancel" onclick="CloseFormUpdateProducts()">X</button>
         </div>
         <div class="formvalue">
             <div class="headinput">
                 <div class="idproduct">
                     <label for="">Mã sản phẩm <span class="symbol">*</span></label><br>
-                    <input type="text" class="idinput">
+                    <input type="text" class="idinput" id="IdProductUpdateInput">
                 </div>
                 <div class="nameproduct">
                     <label for="">Tên sản phẩm <span class="symbol">*</span></label><br>
-                    <input type="text" class="nameinput">
+                    <input type="text" class="nameinput" id="NameProductUpdateInput">
                 </div>
             </div>
             <div class="underheadinput">
                 <div class="categoryunderinput">
                     <p>Danh mục <span class="symbol">*</span></p>
-                    <select name="" id="selectcategory">
-                        <option value="Điện thoại">Điện thoại</option>
+                    <select name="" id="selectcategory2">
+                        <!-- option value="Điện thoại">Điện thoại</option>
                         <option value="Quần áo">Quần áo</option>
-                        <option value="Thực phẩm">Thực phẩm</option>
+                        <option value="Thực phẩm">Thực phẩm</option>< -->
                     </select>
                 </div>
                 <div class="statusproduct">
                     <div class="chose">
                         <p>Trạng thái</p>
-                        <label for=""><input type="radio" name="status" class="status1" value="Active" checked> Đang
+                        <label for=""><input type="radio" name="status" class="status1" value="Active" id="Radio3"> Đang
                             hoạt động</label>
-                        <label for=""><input type="radio" name="status" class="status" value="InActive"> Ngừng hoạt
+                        <label for=""><input type="radio" name="status" class="status" value="InActive" id="Radio4"> Ngừng hoạt
                             động</label>
                     </div>
                 </div>
@@ -194,28 +198,28 @@
             <div class="midinput">
                 <div class="quantity">
                     <label for="" class="quantityname">Số lượng</label>
-                    <input type="number" placeholder="1">
+                    <input type="number" placeholder="1" id="QuantityUpdateProduct">
                 </div>
                 <div class="price">
                     <label for="" class="pricename">Giá</label>
-                    <input type="number" placeholder="10.000.000" step="1000">
+                    <input type="number" placeholder="10.000.000" step="1000" id="PriceProductUpdate">
                 </div>
                 <div class="discount">
                     <label for="" class="discountname">Giảm giá</label>
-                    <input type="number" placeholder="10">
+                    <input type="number" placeholder="10" id="DiscountProductUpdate">
                 </div>
             </div>
             <div class="Inputimage">
                 <label for="" class="image"> Hình ảnh <span class="symbol">*</span></label>
-                <input type="text">
+                <input type="text" id="ImageProductUpdate">
             </div>
             <div class="descproduct">
                 <label for="" class="descproduct1">Chi tiết sản phẩm</label>
-                <input type="text">
+                <input type="text" id="DescUpdateProduct">
             </div>
             <hr class="lineinform">
             <div class="BtnInForm">
-                <button class="BtnCancel" onclick="CloseformAddcategory()">Hủy</button>
+                <button class="BtnCancel" onclick="CloseFormUpdateProducts()">Hủy</button>
                 <button class="BtnConfirm">Thêm</button>
             </div>
         </div>

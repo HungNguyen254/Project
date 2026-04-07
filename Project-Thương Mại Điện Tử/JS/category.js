@@ -26,7 +26,7 @@
 // ];
 // localStorage.setItem("categories",JSON.stringify(categories))
 const categories = JSON.parse(localStorage.getItem("categories")) || [];
-const Products = JSON.parse(localStorage.getItem("Products"))||[];
+const Products = JSON.parse(localStorage.getItem("Products")) || [];
 let Valid = -1;
 let ValidDelete = -1;
 let currentPage = 1;
@@ -60,19 +60,19 @@ function ShowLogOutBtn() {
     }
 }
 function LogOut() {
-    setTimeout(()=>{
-            window.location.href = "./login.html";
-        },2000)
-     Toastify({
-            text: "Đăng xuất thành công",
-            duration: 3000,
-            gravity: "top", 
-            position: "right",
-            backgroundColor: "#28a748",
-            style: {
-                borderRadius: "12px"
-            }
-        }).showToast();
+    setTimeout(() => {
+        window.location.href = "./login.html";
+    }, 2000)
+    Toastify({
+        text: "Đăng xuất thành công",
+        duration: 3000,
+        gravity: "top",
+        position: "right",
+        backgroundColor: "#28a748",
+        style: {
+            borderRadius: "12px"
+        }
+    }).showToast();
 }
 RenderCategories(categories);
 function SearchCategoryByName() {
@@ -96,12 +96,12 @@ function FilterStatus() {
         let StillWork = categories.filter((value) => value.status == "ACTIVE");
         RenderCategories(StillWork);
     }
-    if(SelectBoxValue === "SortByName"){
-        let SortedByName = categories.sort((a,b)=>a.categoryName.localeCompare(b.categoryName));
+    if (SelectBoxValue === "SortByName") {
+        let SortedByName = categories.sort((a, b) => a.categoryName.localeCompare(b.categoryName));
         RenderCategories(SortedByName);
     }
-    if(SelectBoxValue === "SortByCreateAt"){
-        let SortedByCreateAt = categories.sort((a,b)=>a.createAt-b.createAt)
+    if (SelectBoxValue === "SortByCreateAt") {
+        let SortedByCreateAt = categories.sort((a, b) => a.createAt - b.createAt)
         RenderCategories(SortedByCreateAt);
     }
 }
@@ -133,65 +133,41 @@ function AddCategories() {
     let radioActive = document.getElementById("radio1");
     let radioInactive = document.getElementById("radio2");
     if (NewNameCategory.value == "") {
-        Toastify({
-            text: "Tên danh mục không được để trống",
-            duration: 3000,
-            gravity: "top",
-            position: "right",
-            backgroundColor: "#a72828",
-            style: {
-                borderRadius: "12px"
-            }
-        }).showToast();
+        document.querySelector(".error-NameAdd").style.display = "block"
+        document.querySelector(".error-NameAdd").innerHTML = "Tên danh mục không được để trống"
         LegitAdd = false;
         return;
     }
+        document.querySelector(".error-NameAdd").style.display = "none"
+
     if (NewIdCategory.value == "") {
-        Toastify({
-            text: "Mã danh mục không được để trống",
-            duration: 3000,
-            gravity: "top", 
-            position: "right",
-            backgroundColor: "#a72828",
-            style: {
-                borderRadius: "12px"
-            }
-        }).showToast();
+        document.querySelector(".error-IdAdd").style.display = "block"
+        document.querySelector(".error-IdAdd").innerHTML = "Mã danh mục không được để trống"
         LegitAdd = false;
         return;
     }
+        document.querySelector(".error-IdAdd").style.display = "none"
+
     categories.find((value) => {
         if (value.categoryName == NewNameCategory.value) {
-            Toastify({
-                text: "Tên danh mục đã được sử dụng",
-                duration: 3000,
-                gravity: "top", 
-                position: "right", 
-                backgroundColor: "#a72828",
-                style: {
-                    borderRadius: "12px"
-                }
-            }).showToast();
+            document.querySelector(".error-NameAdd").style.display = "block"
+            document.querySelector(".error-NameAdd").innerHTML = "Tên danh mục đã được sử dụng"
             LegitAdd = false;
             return;
         }
     })
+            document.querySelector(".error-NameAdd").style.display = "none"
+
     categories.find((value) => {
         if (value.categoryCode == NewIdCategory.value) {
-            Toastify({
-                text: "Mã danh mục đã được sử dụng",
-                duration: 3000,
-                gravity: "top", 
-                position: "right",
-                backgroundColor: "#a72828",
-                style: {
-                    borderRadius: "12px"
-                }
-            }).showToast();
+           document.querySelector(".error-IdAdd").style.display = "block"
+        document.querySelector(".error-IdAdd").innerHTML = "Mã danh mục đã được sử dụng"
             LegitAdd = false;
             return;
         }
     })
+           document.querySelector(".error-IdAdd").style.display = "none"
+
     if (LegitAdd == true) {
         let value = "";
         if (radioActive.checked) {
@@ -199,13 +175,25 @@ function AddCategories() {
         } else if (radioInactive.checked) {
             value = "INACTIVE";
         }
-        console.log(value);
+        if (!radioActive.checked && !radioInactive.checked) {
+            Toastify({
+                text: "Vui lòng chọn trạng thái sản phẩm",
+                duration: 3000,
+                gravity: "top",
+                position: "right",
+                backgroundColor: "#a72828",
+                style: {
+                    borderRadius: "12px"
+                }
+            }).showToast();
+            return;
+        }
         let NewCategory = {
             id: categories.length !== 0 ? categories[categories.length - 1].id + 1 : 1,
             categoryCode: NewIdCategory.value,
             categoryName: NewNameCategory.value,
             status: value,
-            createAt:new Date(),
+            createAt: new Date(),
         }
         categories.push(NewCategory);
         localStorage.setItem("categories", JSON.stringify(categories));
@@ -220,6 +208,10 @@ function AddCategories() {
             }
         }).showToast();
         RenderCategories(categories)
+        NewNameCategory.value = "";
+        NewIdCategory.value = "";
+        radioActive.checked = false;
+        radioInactive.checked = false;
         document.querySelector(".FormAddCategory").style.display = "none"
     }
 
@@ -240,61 +232,33 @@ function ConfirmUpdate() {
     let radioActiveUpdate = document.getElementById("radio3");
     let radioInactiveUpdate = document.getElementById("radio4");
     if (UpdateNameCategory.value == "") {
-        Toastify({
-            text: "Tên danh mục không được để trống",
-            duration: 3000,
-            gravity: "top",
-            position: "right",
-            backgroundColor: "#a72828",
-            style: {
-                borderRadius: "12px"
-            }
-        }).showToast();
+        document.querySelector(".error-NameUpdate").style.display = "block"
+        document.querySelector(".error-NameUpdate").innerHTML = "Tên danh mục không được để trống"
         LegitUpdate = false;
         return;
     }
+        document.querySelector(".error-NameUpdate").style.display = "none"
+
     if (UpdateIdCategory.value == "") {
-        Toastify({
-            text: "Mã danh mục không được để trống",
-            duration: 3000,
-            gravity: "top",
-            position: "right",
-            backgroundColor: "#a72828",
-            style: {
-                borderRadius: "12px"
-            }
-        }).showToast();
+        document.querySelector(".error-IdUpdate").style.display = "block"
+        document.querySelector(".error-IdUpdate").innerHTML = "Mã danh mục không được để trống"
         LegitUpdate = false;
         return;
     }
+        document.querySelector(".error-IdUpdate").style.display = "none"
+
     categories.find((value) => {
         if (UpdateNameCategory.value == value.categoryName && value.id !== categories[Valid].id) {
-            Toastify({
-                text: "Tên danh mục đã được sử dụng",
-                duration: 3000,
-                gravity: "top",
-                position: "right",
-                backgroundColor: "#a72828",
-                style: {
-                    borderRadius: "12px"
-                }
-            }).showToast();
+            document.querySelector(".error-NameUpdate").style.display = "block"
+            document.querySelector(".error-NameUpdate").innerHTML = "Tên danh mục đã được sử dụng"
             LegitUpdate = false;
             return;
         }
     })
     categories.find((value) => {
         if (UpdateIdCategory.value == value.categoryCode && value.id !== categories[Valid].id) {
-            Toastify({
-                text: "Tên danh mục đã được sử dụng",
-                duration: 3000,
-                gravity: "top",
-                position: "right",
-                backgroundColor: "#a72828",
-                style: {
-                    borderRadius: "12px"
-                }
-            }).showToast();
+            document.querySelector(".error-IdUpdate").style.display = "block"
+            document.querySelector(".error-IdUpdate").innerHTML = "Mã danh mục đã được sử dụng";
             LegitUpdate = false;
             return;
         }
@@ -322,14 +286,16 @@ function ConfirmUpdate() {
             }
         }).showToast();
         RenderCategories(categories);
+        radioActiveUpdate.check = false;
+        radioInactiveUpdate.check = false;
         Valid = -1;
     }
 
 };
 function ConfirmDelete() {
-    if(categories[ValidDelete].status === "ACTIVE"){
+    if (categories[ValidDelete].status === "ACTIVE") {
         Toastify({
-            text: "Danh mục vẫn còn sản phẩm",
+            text: "Danh mục vẫn còn ít nhất 1 sản phẩm,không thể xóa",
             duration: 3000,
             gravity: "top",
             position: "right",
@@ -338,13 +304,23 @@ function ConfirmDelete() {
                 borderRadius: "12px"
             }
         }).showToast();
-    CloseConfirmDelete();
+        CloseConfirmDelete();
         return;
     }
     categories.splice(ValidDelete, 1);
     localStorage.setItem("categories", JSON.stringify(categories));
     RenderCategories(categories);
     ValidDelete = -1;
+    Toastify({
+        text: "Xóa danh mục thành công",
+        duration: 3000,
+        gravity: "top",
+        position: "right",
+        backgroundColor: "#28a72c",
+        style: {
+            borderRadius: "12px"
+        }
+    }).showToast();
     CloseConfirmDelete();
 }
 function renderPagination() {
@@ -383,11 +359,11 @@ function renderPagination() {
 };
 renderPagination();
 function changePage(page) {
-  const totalPages = Math.ceil(categories.length / perPage);
+    const totalPages = Math.ceil(categories.length / perPage);
 
-  if (page < 1 || page > totalPages) return;
+    if (page < 1 || page > totalPages) return;
 
-  currentPage = page;
-  RenderCategories(categories);
-  renderPagination();
+    currentPage = page;
+    RenderCategories(categories);
+    renderPagination();
 }

@@ -29,6 +29,7 @@
 // localStorage.setItem("Products",JSON.stringify(products));
 const products = JSON.parse(localStorage.getItem("Products"))||[];
 const Category = JSON.parse(localStorage.getItem("categories"))||[];
+let Valid = -1;
 function UpformAddProduct() {
     document.querySelector(".AddProduct").style.display = "block"
 }
@@ -43,10 +44,10 @@ function CloseformAddProducts() {
     document.querySelector(".AddProduct").style.display = "none"
 
 }
-function UpFormUpdateCategory() {
+function UpFormUpdateProducts() {
     document.querySelector(".UpdateProduct").style.display = "block"
 }
-function CloseFormUpdateCategory() {
+function CloseFormUpdateProducts() {
     document.querySelector(".UpdateProduct").style.display = "none"
 }
 function ShowLogOutBtn() {
@@ -75,7 +76,7 @@ function LogOut() {
 function RenderStorageList(products){
     let StorageList = document.getElementById("ListCategories");
     StorageList.innerHTML = products
-    .map((value)=>{
+    .map((value,index)=>{
         return `<div class="row">
                         <p class="idcategory">${value.productcode}</p>
                         <p class="namecategory">${value.productname}</p>
@@ -83,8 +84,8 @@ function RenderStorageList(products){
                         <p>${value.stock}</p>
                         <p>${value.discount}</p>
                          <p ${value.status == "ACTIVE" ? "class=StatusActive" : "class=StatusInActive"}><span ${value.status == "ACTIVE" ? "class=dotgreen" : "class=dotred"}></span> ${value.status == "ACTIVE" ? "Đang hoạt động" : "Ngừng hoạt động"}</p>
-                        <p><button id="btndelete"><img src="../Asset/Image/Button.png" alt=""></button>
-                            <button id="btnedit"><img src="../Asset/Image/_Button base.png" alt=""></button></p>
+                        <p><button id="btndelete" onclick="DeleteProduct(${index})"><img src="../Asset/Image/Button.png" alt=""></button>
+                            <button id="btnedit" onclick = "UpdateProduct(${index})"><img src="../Asset/Image/_Button base.png" alt=""></button></p>
                     </div>
                         `
     }).join("");
@@ -214,6 +215,7 @@ function AddProduct(){
     RenderOptionValue();
     localStorage.setItem("Products",JSON.stringify(products));
     CloseformAddProducts();
+    RenderStorageList(products)
     NameProduct.value="";
     IdProduct.value ="";
     QuantityProduct.value = "";
@@ -240,7 +242,183 @@ RenderOptionValueInFilter();
 function FilterProductById(){
     let ValueSelect = document.getElementById("selectcategory");
     let Filter = products.filter((value)=>{
-        return value.categoryName == ValueSelect.value;
+        return value.categoryName === ValueSelect.value;
     })
+    console.log(Filter);
     RenderStorageList(Filter)
+}
+function FilterStatusProducts(){
+    let ChangeValueFilter = document.getElementById("SelectBoxStatus");
+    if(ChangeValueFilter.value == "INACTIVE"){
+        let StopWork = products.filter((value)=>value.status === "INACTIVE")
+        RenderStorageList(StopWork)
+    }
+    if(ChangeValueFilter.value == "ACTIVE"){
+        let StillWork = products.filter((value)=>value.status == "ACTIVE")
+        RenderStorageList(StillWork)
+    }
+    if(ChangeValueFilter.value == "SortByName"){
+        let SortbyName = products.sort((a,b)=>a.productname.localeCompare(b.productname));
+        RenderStorageList(SortbyName)
+    }
+    if(ChangeValueFilter.value == "SortByPrice"){
+        let SortbyPrice = products.sort((a,b)=>a.price-b.price);
+        RenderStorageList(SortbyPrice)
+    }
+    if(ChangeValueFilter.value == "SortByDate"){
+        let SortbyDate = products.sort((a,b)=>a.created_at-b.created_at)
+        RenderStorageList(SortbyDate)
+    }
+}
+function RenderOptionValue(){
+    let SelectValue = document.getElementById("selectcategory2");
+    SelectValue.innerHTML = Category
+    .map((value)=>{
+        return `<option value="${value.categoryName}">${value.categoryName}</option>`
+    }).join("");
+}
+function UpdateProduct(index){
+    UpFormUpdateProducts();
+     let NameProductUpdate = document.getElementById("NameProductUpdateInput");
+    let IdProductUpdate = document.getElementById("IdProductUpdateInput");
+    let QuantityProductUpdate = document.getElementById("QuantityUpdateProduct");
+    let PriceProductUpdate = document.getElementById("PriceProductUpdate");
+    let DiscountProductUpdate = document.getElementById("DiscountProductUpdate");
+    let ImageProductUpdate = document.getElementById("ImageProductUpdate");
+    let DescUpdateProduct = document.getElementById("DescUpdateProduct");
+    let CheckRadioActive = document.getElementById("Radio3");
+    let CheckRadioInActive = document.getElementById("Radio4");
+    let ValueSelect = document.getElementById("selectcategory2");
+    let value="";
+    if(CheckRadioActive.checked){
+        value = "ACTIVE"
+    }else if(CheckRadioInActive.checked){
+        value = "INACTIVE"
+    }
+    NameProductUpdate.value = products[index].productname;
+    IdProductUpdate.value = products[index].productcode;
+    QuantityProductUpdate.value = products[index].stock;
+    PriceProductUpdate.value = products[index].price;
+    DiscountProductUpdate.value = products[index].discount;
+    ImageProductUpdate.value = products[index].image;
+    DescUpdateProduct.value = products[index].description;
+    ValueSelect.value = products[index].categoryName;
+    Valid = index;
+}
+function ConfirmUpdate(){
+    let ValidUpdate  = true;
+    let NameProductUpdate = document.getElementById("NameProductUpdateInput");
+    let IdProductUpdate = document.getElementById("IdProductUpdateInput");
+    let QuantityProductUpdate = document.getElementById("QuantityUpdateProduct");
+    let PriceProductUpdate = document.getElementById("PriceProductUpdate");
+    let DiscountProductUpdate = document.getElementById("DiscountProductUpdate");
+    let ImageProductUpdate = document.getElementById("ImageProductUpdate");
+    let DescUpdateProduct = document.getElementById("DescUpdateProduct");
+    let CheckRadioActive = document.getElementById("Radio3");
+    let CheckRadioInActive = document.getElementById("Radio4");
+    let ValueSelect = document.getElementById("selectcategory2");
+    let value="";
+    if(NameProductUpdate.value == ""){
+         Toastify({
+                text: "Tên sản phẩm không được để rỗng",
+                duration: 3000,
+                gravity: "top",
+                position: "right",
+                backgroundColor: "#a72828",
+                style: {
+                    borderRadius: "12px"
+                }
+            }).showToast();
+            ValidUpdate = false;
+            return;
+    }
+    if(IdProductUpdate.value ==""){
+        Toastify({
+                text: "Mã sản phẩm không được để rỗng",
+                duration: 3000,
+                gravity: "top",
+                position: "right",
+                backgroundColor: "#a72828",
+                style: {
+                    borderRadius: "12px"
+                }
+            }).showToast();
+            ValidUpdate = false;
+            return;
+    }
+    products.find((value)=>{
+        if(value.productname == NameProductUpdate.value && value.id !== products[Valid].id){
+            Toastify({
+                text: "Tên sản phẩm đã được sử dụng",
+                duration: 3000,
+                gravity: "top",
+                position: "right",
+                backgroundColor: "#a72828",
+                style: {
+                    borderRadius: "12px"
+                }
+            }).showToast();
+            ValidUpdate = false;
+            return;
+        }
+    })
+    products.find((value)=>{
+        if(value.productcode == IdProductUpdate.value && value.id !== products[Valid].id){
+            Toastify({
+                text: "Mã sản phẩm đã được sử dụng",
+                duration: 3000,
+                gravity: "top",
+                position: "right",
+                backgroundColor: "#a72828",
+                style: {
+                    borderRadius: "12px"
+                }
+            }).showToast();
+            ValidUpdate = false;
+            return;
+        }
+    })
+if(PriceProductUpdate.value < 0){
+    Toastify({
+                text: "Giá sản phẩm phải lớn hơn 0",
+                duration: 3000,
+                gravity: "top",
+                position: "right",
+                backgroundColor: "#a72828",
+                style: {
+                    borderRadius: "12px"
+                }
+            }).showToast();
+            ValidUpdate = false;
+            return;
+}
+if(QuantityProductUpdate.value < 0 ){
+    Toastify({
+                text: "Số lượng tồn kho phải lớn hơn 0",
+                duration: 3000,
+                gravity: "top",
+                position: "right",
+                backgroundColor: "#a72828",
+                style: {
+                    borderRadius: "12px"
+                }
+            }).showToast();
+            ValidUpdate = false;
+            return;
+}
+    if(CheckRadioActive.checked){
+        value = "ACTIVE"
+    }else if(CheckRadioInActive.checked){
+        value = "INACTIVE"
+    }
+    products[Valid].productname = NameProductUpdate.value;
+    products[Valid].productcode = IdProductUpdate.value;
+    products[Valid].stock = QuantityProductUpdate.value;
+    products[Valid].price = PriceProductUpdate.value;
+    products[Valid].description = DescUpdateProduct.value;
+    products[Valid].discount = DiscountProductUpdate.value;
+    products[Valid].image = ImageProductUpdate.value;
+    products[Valid].categoryName = ValueSelect.value
+    localStorage.setItem("Products",JSON.stringify(products));
+
 }

@@ -21,12 +21,15 @@
 <body>
     <div class="category">
         <div class="boardleft">
-            <h2><i class="fa-solid fa-fire"></i>Ecommerce</h2>
-            <p class="statistic"><i class="fa-solid fa-house"></i><a href="http://" class="statisticlink">Thống kê</a>
+            <h2><img src="../Asset/icon/Fire.png" alt=""> Ecommerce</h2>
+            <p class="statistic"><img src="../Asset/icon/House.png" alt=""><a href="http://" class="statisticlink">Thống
+                    kê</a>
             </p>
-            <p class="Categories"><i class="fa-solid fa-layer-group"></i>Danh mục</p>
-            <p class="Product"><i class="fa-regular fa-folder"></i><a href="../Pages/Storage.html"
-                    class="productlink">Sản phẩm</a></p>
+            <p class="Categories"><img src="../Asset/icon/Cash.png" alt=""><a href="../Pages/category.html"
+                    class="CategoryLink">Danh mục</a></p>
+            <p class="Product"><img src="../Asset/icon/IconProduct.png" alt=""><a href="../Pages/Storage.html" class="productlink">Sản
+                    phẩm</a>
+            </p>
         </div>
         <div class="boardright">
             <div class="headboardright">
@@ -91,8 +94,10 @@
 
         <label for="idcatoinput" class="AddIdCategory">Mã danh mục <span class="symbol">*</span></label><br>
         <input type="text" name="idcatoinput" class="AddIdCategoryInput" id="AddIdCategory"><br><br><br>
+        <p class="error-IdAdd"></p><br>
         <label for="namecatoinput" class="AddNameCategory">Tên Danh mục <span class="symbol">*</span></label><br><br>
-        <input type="text" name="namecatoinput" class="AddNameCategoryInput" id="AddNameCategory">
+        <input type="text" name="namecatoinput" class="AddNameCategoryInput" id="AddNameCategory"><br>
+        <p class="error-NameAdd"></p><br>
 
         <div class="chooseStatus">
             <p>Trạng thái</p><br>
@@ -121,10 +126,11 @@
         <label for="idcatoinput" class="AddIdCategory">Mã danh mục <span class="symbol">*</span></label><br>
         <input type="text" name="idcatoinput" class="AddIdCategoryInput" id="UpdateIdCategoryInput"
             placeholder="  DM001"><br><br><br>
+        <p class="error-IdUpdate"></p><br>
         <label for="namecatoinput" class="AddNameCategory">Tên Danh mục <span class="symbol">*</span></label><br><br>
         <input type="text" name="namecatoinput" class="AddNameCategoryInput" id="UpdateNameCategoryInput"
             placeholder="  Quần áo">
-
+        <p class="error-NameUpdate"></p><br>    
         <div class="chooseStatus">
             <p>Trạng thái</p><br>
             <label class="radio">

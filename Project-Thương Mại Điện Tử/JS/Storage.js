@@ -27,8 +27,8 @@
 // }
 // ];
 // localStorage.setItem("Products",JSON.stringify(products));
-const products = JSON.parse(localStorage.getItem("Products"))||[];
-const Category = JSON.parse(localStorage.getItem("categories"))||[];
+const products = JSON.parse(localStorage.getItem("Products")) || [];
+const Category = JSON.parse(localStorage.getItem("categories")) || [];
 let Valid = -1;
 function UpformAddProduct() {
     document.querySelector(".AddProduct").style.display = "block"
@@ -59,25 +59,25 @@ function ShowLogOutBtn() {
     }
 }
 function LogOut() {
-    setTimeout(()=>{
-            window.location.href = "./login.html";
-        },2000)
-     Toastify({
-            text: "Đăng xuất thành công",
-            duration: 3000,
-            gravity: "top", 
-            position: "right",
-            backgroundColor: "#28a748",
-            style: {
-                borderRadius: "12px"
-            }
-        }).showToast();
+    setTimeout(() => {
+        window.location.href = "./login.html";
+    }, 2000)
+    Toastify({
+        text: "Đăng xuất thành công",
+        duration: 3000,
+        gravity: "top",
+        position: "right",
+        backgroundColor: "#28a748",
+        style: {
+            borderRadius: "12px"
+        }
+    }).showToast();
 }
-function RenderStorageList(products){
+function RenderStorageList(products) {
     let StorageList = document.getElementById("ListCategories");
     StorageList.innerHTML = products
-    .map((value,index)=>{
-        return `<div class="row">
+        .map((value, index) => {
+            return `<div class="row">
                         <p class="idcategory">${value.productcode}</p>
                         <p class="namecategory">${value.productname}</p>
                         <p>${value.price}đ</p>
@@ -88,18 +88,18 @@ function RenderStorageList(products){
                             <button id="btnedit" onclick = "UpdateProduct(${index})"><img src="../Asset/Image/_Button base.png" alt=""></button></p>
                     </div>
                         `
-    }).join("");
+        }).join("");
 }
-function RenderOptionValue(){
+function RenderOptionValue() {
     let SelectValue = document.getElementById("selectcategory");
     SelectValue.innerHTML = Category
-    .map((value)=>{
-        return `<option value="${value.categoryName}">${value.categoryName}</option>`
-    }).join("");
+        .map((value) => {
+            return `<option value="${value.categoryName}">${value.categoryName}</option>`
+        }).join("");
 }
 RenderOptionValue();
 RenderStorageList(products)
-function AddProduct(){
+function AddProduct() {
     let NameProduct = document.getElementById("NameProductInput");
     let IdProduct = document.getElementById("IdProductInput");
     let QuantityProduct = document.getElementById("QuantityProductInput");
@@ -110,61 +110,61 @@ function AddProduct(){
     let CheckRadioActive = document.getElementById("Radio1");
     let CheckRadioInActive = document.getElementById("Radio2");
     let ValueSelect = document.getElementById("selectcategory");
-    let value="";
-    if(NameProduct.value == ""){
+    let value = "";
+    if (NameProduct.value == "") {
         Toastify({
-                text: "Tên sản phẩm không được để trống",
-                duration: 3000,
-                gravity: "top",
-                position: "right",
-                backgroundColor: "#a72828",
-                style: {
-                    borderRadius: "12px"
-                }
-            }).showToast();
-            return;
+            text: "Tên sản phẩm không được để trống",
+            duration: 3000,
+            gravity: "top",
+            position: "right",
+            backgroundColor: "#a72828",
+            style: {
+                borderRadius: "12px"
+            }
+        }).showToast();
+        return;
     }
-    if(IdProduct.value == ""){
+    if (IdProduct.value == "") {
         Toastify({
-                text: "Mã sản phẩm không được để trống",
-                duration: 3000,
-                gravity: "top",
-                position: "right",
-                backgroundColor: "#a72828",
-                style: {
-                    borderRadius: "12px"
-                }
-            }).showToast();
-            return;
+            text: "Mã sản phẩm không được để trống",
+            duration: 3000,
+            gravity: "top",
+            position: "right",
+            backgroundColor: "#a72828",
+            style: {
+                borderRadius: "12px"
+            }
+        }).showToast();
+        return;
     }
-    if(PriceProduct.value <0){
+    if (PriceProduct.value < 0) {
         Toastify({
-                text: "Giá sản phẩm phải lớn hơn 0",
-                duration: 3000,
-                gravity: "top",
-                position: "right",
-                backgroundColor: "#a72828",
-                style: {
-                    borderRadius: "12px"
-                }
-            }).showToast();
-            return;
+            text: "Giá sản phẩm phải lớn hơn 0",
+            duration: 3000,
+            gravity: "top",
+            position: "right",
+            backgroundColor: "#a72828",
+            style: {
+                borderRadius: "12px"
+            }
+        }).showToast();
+        return;
     }
-    if(QuantityProduct.value < 0){
-          Toastify({
-                text: "Số lượng phải lớn hơn 0",
-                duration: 3000,
-                gravity: "top",
-                position: "right",
-                backgroundColor: "#a72828",
-                style: {
-                    borderRadius: "12px"
-                }
-            }).showToast();
-            return;
+    if (QuantityProduct.value < 0) {
+        Toastify({
+            text: "Số lượng phải lớn hơn 0",
+            duration: 3000,
+            gravity: "top",
+            position: "right",
+            backgroundColor: "#a72828",
+            style: {
+                borderRadius: "12px"
+            }
+        }).showToast();
+        return;
     }
-    products.find((value)=>{
-        if(value.productname == NameProduct.value){
+    products.find((value) => {
+        if (value.productname == NameProduct.value) {
             Toastify({
                 text: "Tên sản phẩm đã được sử dụng",
                 duration: 3000,
@@ -178,8 +178,8 @@ function AddProduct(){
             return;
         }
     })
-    products.find((value)=>{
-        if(value.productcode == IdProduct.value){
+    products.find((value) => {
+        if (value.productcode == IdProduct.value) {
             Toastify({
                 text: "Mã sản phẩm đã được sử dụng",
                 duration: 3000,
@@ -193,93 +193,106 @@ function AddProduct(){
             return;
         }
     });
-    if(CheckRadioActive.checked){
+    if (CheckRadioActive.checked) {
         value = "ACTIVE"
-    }else if(CheckRadioInActive.checked){
+    } else if (CheckRadioInActive.checked) {
         value = "INACTIVE"
     }
+     if (!radioActive.checked && !radioInactive.checked) {
+            Toastify({
+                text: "Vui lòng chọn trạng thái sản phẩm",
+                duration: 3000,
+                gravity: "top",
+                position: "right",
+                backgroundColor: "#a72828",
+                style: {
+                    borderRadius: "12px"
+                }
+            }).showToast();
+            return;
+        }
     let NewProduct = {
-        id: products.length !== 0 ?products[products.length-1].id+1:1,
-        productcode:IdProduct.value,
+        id: products.length !== 0 ? products[products.length - 1].id + 1 : 1,
+        productcode: IdProduct.value,
         productname: NameProduct.value,
-        stock:QuantityProduct.value,
-        price:PriceProduct.value,
-        discount:DiscountProduct.value,
-        image:ImageProduct.value,
-        description:DescProduct.value,
-        status:value,
-        categoryName:ValueSelect.value,
-        created_at:Date.now()
+        stock: QuantityProduct.value,
+        price: PriceProduct.value,
+        discount: DiscountProduct.value,
+        image: ImageProduct.value,
+        description: DescProduct.value,
+        status: value,
+        categoryName: ValueSelect.value,
+        created_at: Date.now()
     };
     products.push(NewProduct);
     RenderOptionValue();
-    localStorage.setItem("Products",JSON.stringify(products));
+    localStorage.setItem("Products", JSON.stringify(products));
     CloseformAddProducts();
     RenderStorageList(products)
-    NameProduct.value="";
-    IdProduct.value ="";
+    NameProduct.value = "";
+    IdProduct.value = "";
     QuantityProduct.value = "";
     PriceProduct.value = "";
-    DiscountProduct.value= "";
+    DiscountProduct.value = "";
     ImageProduct.value = "";
     DescProduct.value = "";
 };
-function SearchProductByName(){
+function SearchProductByName() {
     let SearchProduct = document.getElementById("SearchBox").value.trim().toLowerCase();
-    let found = products.filter((value)=>{
+    let found = products.filter((value) => {
         return value.productname.toLowerCase().includes(SearchProduct);
     })
     RenderStorageList(found);
 }
-function RenderOptionValueInFilter(){
+function RenderOptionValueInFilter() {
     let SelectCheckValue = document.getElementById("SelectBoxId");
     SelectCheckValue.innerHTML = Category
-    .map((value)=>{
-         return `<option value="${value.categoryName}">${value.categoryName}</option>`          
-    }).join("")
+        .map((value) => {
+            return `<option value="${value.categoryName}">${value.categoryName}</option>`
+        }).join("")
 };
 RenderOptionValueInFilter();
-function FilterProductById(){
+function FilterProductById() {
     let ValueSelect = document.getElementById("selectcategory");
-    let Filter = products.filter((value)=>{
+    let Filter = products.filter((value) => {
         return value.categoryName === ValueSelect.value;
     })
     console.log(Filter);
     RenderStorageList(Filter)
 }
-function FilterStatusProducts(){
+function FilterStatusProducts() {
     let ChangeValueFilter = document.getElementById("SelectBoxStatus");
-    if(ChangeValueFilter.value == "INACTIVE"){
-        let StopWork = products.filter((value)=>value.status === "INACTIVE")
+    if (ChangeValueFilter.value == "INACTIVE") {
+        let StopWork = products.filter((value) => value.status === "INACTIVE")
         RenderStorageList(StopWork)
     }
-    if(ChangeValueFilter.value == "ACTIVE"){
-        let StillWork = products.filter((value)=>value.status == "ACTIVE")
+    if (ChangeValueFilter.value == "ACTIVE") {
+        let StillWork = products.filter((value) => value.status == "ACTIVE")
         RenderStorageList(StillWork)
     }
-    if(ChangeValueFilter.value == "SortByName"){
-        let SortbyName = products.sort((a,b)=>a.productname.localeCompare(b.productname));
+    if (ChangeValueFilter.value == "SortByName") {
+        let SortbyName = products.sort((a, b) => a.productname.localeCompare(b.productname));
         RenderStorageList(SortbyName)
     }
-    if(ChangeValueFilter.value == "SortByPrice"){
-        let SortbyPrice = products.sort((a,b)=>a.price-b.price);
+    if (ChangeValueFilter.value == "SortByPrice") {
+        let SortbyPrice = products.sort((a, b) => a.price - b.price);
         RenderStorageList(SortbyPrice)
     }
-    if(ChangeValueFilter.value == "SortByDate"){
-        let SortbyDate = products.sort((a,b)=>a.created_at-b.created_at)
+    if (ChangeValueFilter.value == "SortByDate") {
+        let SortbyDate = products.sort((a, b) => a.created_at - b.created_at)
         RenderStorageList(SortbyDate)
     }
 }
-function RenderOptionValue(){
+function RenderOptionValue() {
     let SelectValue = document.getElementById("selectcategory2");
     SelectValue.innerHTML = Category
-    .map((value)=>{
-        return `<option value="${value.categoryName}">${value.categoryName}</option>`
-    }).join("");
+        .map((value) => {
+            return `<option value="${value.categoryName}">${value.categoryName}</option>`
+        }).join("");
 }
-function UpdateProduct(index){
+function UpdateProduct(index) {
     UpFormUpdateProducts();
-     let NameProductUpdate = document.getElementById("NameProductUpdateInput");
+    let NameProductUpdate = document.getElementById("NameProductUpdateInput");
     let IdProductUpdate = document.getElementById("IdProductUpdateInput");
     let QuantityProductUpdate = document.getElementById("QuantityUpdateProduct");
     let PriceProductUpdate = document.getElementById("PriceProductUpdate");
@@ -289,10 +302,10 @@ function UpdateProduct(index){
     let CheckRadioActive = document.getElementById("Radio3");
     let CheckRadioInActive = document.getElementById("Radio4");
     let ValueSelect = document.getElementById("selectcategory2");
-    let value="";
-    if(CheckRadioActive.checked){
+    let value = "";
+    if (CheckRadioActive.checked) {
         value = "ACTIVE"
-    }else if(CheckRadioInActive.checked){
+    } else if (CheckRadioInActive.checked) {
         value = "INACTIVE"
     }
     NameProductUpdate.value = products[index].productname;
@@ -305,8 +318,8 @@ function UpdateProduct(index){
     ValueSelect.value = products[index].categoryName;
     Valid = index;
 }
-function ConfirmUpdate(){
-    let ValidUpdate  = true;
+function ConfirmUpdate() {
+    let ValidUpdate = true;
     let NameProductUpdate = document.getElementById("NameProductUpdateInput");
     let IdProductUpdate = document.getElementById("IdProductUpdateInput");
     let QuantityProductUpdate = document.getElementById("QuantityUpdateProduct");
@@ -317,100 +330,65 @@ function ConfirmUpdate(){
     let CheckRadioActive = document.getElementById("Radio3");
     let CheckRadioInActive = document.getElementById("Radio4");
     let ValueSelect = document.getElementById("selectcategory2");
-    let value="";
-    if(NameProductUpdate.value == ""){
-         Toastify({
-                text: "Tên sản phẩm không được để rỗng",
-                duration: 3000,
-                gravity: "top",
-                position: "right",
-                backgroundColor: "#a72828",
-                style: {
-                    borderRadius: "12px"
-                }
-            }).showToast();
-            ValidUpdate = false;
-            return;
+    let value = "";
+    if (NameProductUpdate.value == "") {
+        document.querySelector(".error-nameUpdate").style.display = "block";
+        document.querySelector(".error-nameUpdate").innerHTML = "Tên sản phẩm không được để rỗng";
+        ValidUpdate = false;
+        return;
     }
-    if(IdProductUpdate.value ==""){
-        Toastify({
-                text: "Mã sản phẩm không được để rỗng",
-                duration: 3000,
-                gravity: "top",
-                position: "right",
-                backgroundColor: "#a72828",
-                style: {
-                    borderRadius: "12px"
-                }
-            }).showToast();
-            ValidUpdate = false;
-            return;
+    if (IdProductUpdate.value == "") {
+        document.querySelector(".error-idUpdate").style.display = "block";
+        document.querySelector(".error-idUpdate").innerHTML = "Mã sản phẩm không được để rỗng";
+        ValidUpdate = false;
+        return;
     }
-    products.find((value)=>{
-        if(value.productname == NameProductUpdate.value && value.id !== products[Valid].id){
-            Toastify({
-                text: "Tên sản phẩm đã được sử dụng",
-                duration: 3000,
-                gravity: "top",
-                position: "right",
-                backgroundColor: "#a72828",
-                style: {
-                    borderRadius: "12px"
-                }
-            }).showToast();
+    products.find((value) => {
+        if (value.productname == NameProductUpdate.value && value.id !== products[Valid].id) {
+            document.querySelector(".error-nameUpdate").style.display = "block";
+            document.querySelector(".error-nameUpdate").innerHTML = "Tên sản phẩm đã được sử dụng";
             ValidUpdate = false;
             return;
         }
     })
-    products.find((value)=>{
-        if(value.productcode == IdProductUpdate.value && value.id !== products[Valid].id){
-            Toastify({
-                text: "Mã sản phẩm đã được sử dụng",
-                duration: 3000,
-                gravity: "top",
-                position: "right",
-                backgroundColor: "#a72828",
-                style: {
-                    borderRadius: "12px"
-                }
-            }).showToast();
+    products.find((value) => {
+        if (value.productcode == IdProductUpdate.value && value.id !== products[Valid].id) {
+            document.querySelector(".error-idUpdate").style.display = "block";
+            document.querySelector(".error-idUpdate").innerHTML = "Mã sản phẩm đã được sử dụng";
             ValidUpdate = false;
             return;
         }
     })
-if(PriceProductUpdate.value < 0){
-    Toastify({
-                text: "Giá sản phẩm phải lớn hơn 0",
-                duration: 3000,
-                gravity: "top",
-                position: "right",
-                backgroundColor: "#a72828",
-                style: {
-                    borderRadius: "12px"
-                }
-            }).showToast();
-            ValidUpdate = false;
-            return;
-}
-if(QuantityProductUpdate.value < 0 ){
-    Toastify({
-                text: "Số lượng tồn kho phải lớn hơn 0",
-                duration: 3000,
-                gravity: "top",
-                position: "right",
-                backgroundColor: "#a72828",
-                style: {
-                    borderRadius: "12px"
-                }
-            }).showToast();
-            ValidUpdate = false;
-            return;
-}
-    if(CheckRadioActive.checked){
+    if (PriceProductUpdate.value < 0) {
+        document.querySelector(".error-priceUpdate").style.display = "block";
+        document.querySelector(".error-priceUpdate").innerHTML = "Giá sản phẩm phải lớn hơn 0";
+        ValidUpdate = false;
+        return;
+    }
+    if (QuantityProductUpdate.value < 0) {
+        document.querySelector(".error-quantityUpdate").style.display = "block";
+        document.querySelector(".error-quantityUpdate").innerHTML = "Số lượng tồn kho phải lớn hơn 0";
+        ValidUpdate = false;
+        return;
+    }
+    if (CheckRadioActive.checked) {
         value = "ACTIVE"
-    }else if(CheckRadioInActive.checked){
+    } else if (CheckRadioInActive.checked) {
         value = "INACTIVE"
     }
+     if (!radioActive.checked && !radioInactive.checked) {
+            Toastify({
+                text: "Vui lòng chọn trạng thái sản phẩm",
+                duration: 3000,
+                gravity: "top",
+                position: "right",
+                backgroundColor: "#a72828",
+                style: {
+                    borderRadius: "12px"
+                }
+            }).showToast();
+            return;
+        }
     products[Valid].productname = NameProductUpdate.value;
     products[Valid].productcode = IdProductUpdate.value;
     products[Valid].stock = QuantityProductUpdate.value;
@@ -419,6 +397,6 @@ if(QuantityProductUpdate.value < 0 ){
     products[Valid].discount = DiscountProductUpdate.value;
     products[Valid].image = ImageProductUpdate.value;
     products[Valid].categoryName = ValueSelect.value
-    localStorage.setItem("Products",JSON.stringify(products));
-
+    localStorage.setItem("Products", JSON.stringify(products));
+    RenderStorageList();
 }

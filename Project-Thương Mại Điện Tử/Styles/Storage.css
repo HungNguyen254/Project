@@ -446,3 +446,84 @@ width: 8px;
 .btnLogOut:hover{
     cursor: pointer;
 }
+.overlay {
+    position: absolute;
+    top: 10px;
+    left: 600px;
+    right: 0;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+/* box chính */
+.confirm-modal {
+    border:1px solid black;
+    background: #fff;
+    padding: 20px 25px;
+    border-radius: 10px;
+    width: 350px;
+    text-align: left;
+    animation: fadeIn 0.3s ease;
+}
+
+/* icon tròn */
+.icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #ffe5e5;
+    color: red;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+/* text */
+.confirm-modal h3 {
+    margin: 5px 0;
+}
+
+.confirm-modal p {
+    color: #666;
+    font-size: 14px;
+}
+
+/* nút */
+.actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 15px;
+    gap: 10px;
+}
+
+.btn-cancel {
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    background: #fff;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.btn-delete {
+    padding: 6px 12px;
+    border: none;
+    background: #e74c3c;
+    color: white;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+/* animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

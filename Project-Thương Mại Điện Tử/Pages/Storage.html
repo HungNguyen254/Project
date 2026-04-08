@@ -228,10 +228,20 @@
             <hr class="lineinform">
             <div class="BtnInForm">
                 <button class="BtnCancel" onclick="CloseFormUpdateProducts()">Hủy</button>
-                <button class="BtnConfirm">Thêm</button>
+                <button class="BtnConfirm" onclick="ConfirmUpdate()">Cập nhật</button>
             </div>
         </div>
     </div>
+    <div id="confirmBox" class="overlay">
+<div class="confirm-modal">
+    <div class="icon">!</div>
+    <h3>Xác nhận</h3>
+    <p>Bạn có chắc chắn muốn xóa sản phẩm Tạo đó khỏi hệ thống không?</p>
+    <div class="actions">
+        <button class="btn-cancel" onclick="CloseConfirmDelete()">Hủy</button>
+        <button class="btn-delete" onclick="ConfirmDeleteProducts()">Xóa</button>
+    </div>
+</div>
     <script src="../JS/Storage.js"></script>
 </body>
 

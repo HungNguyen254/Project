@@ -30,6 +30,7 @@
 const products = JSON.parse(localStorage.getItem("Products")) || [];
 const Category = JSON.parse(localStorage.getItem("categories")) || [];
 let Valid = -1;
+let ValidDelete = -1;
 function UpformAddProduct() {
     document.querySelector(".AddProduct").style.display = "block"
 }
@@ -84,7 +85,7 @@ function RenderStorageList(products) {
                         <p>${value.stock}</p>
                         <p>${value.discount}</p>
                          <p ${value.status == "ACTIVE" ? "class=StatusActive" : "class=StatusInActive"}><span ${value.status == "ACTIVE" ? "class=dotgreen" : "class=dotred"}></span> ${value.status == "ACTIVE" ? "Đang hoạt động" : "Ngừng hoạt động"}</p>
-                        <p><button id="btndelete" onclick="DeleteProduct(${index})"><img src="../Asset/Image/Button.png" alt=""></button>
+                        <p><button id="btndelete" onclick="OpenFormConfirmDelete(${index})"><img src="../Asset/Image/Button.png" alt=""></button>
                             <button id="btnedit" onclick = "UpdateProduct(${index})"><img src="../Asset/Image/_Button base.png" alt=""></button></p>
                     </div>
                         `
@@ -198,19 +199,19 @@ function AddProduct() {
     } else if (CheckRadioInActive.checked) {
         value = "INACTIVE"
     }
-     if (!radioActive.checked && !radioInactive.checked) {
-            Toastify({
-                text: "Vui lòng chọn trạng thái sản phẩm",
-                duration: 3000,
-                gravity: "top",
-                position: "right",
-                backgroundColor: "#a72828",
-                style: {
-                    borderRadius: "12px"
-                }
-            }).showToast();
-            return;
-        }
+    if (!CheckRadioActive.checked && !CheckRadioInActive.checked) {
+        Toastify({
+            text: "Vui lòng chọn trạng thái sản phẩm",
+            duration: 3000,
+            gravity: "top",
+            position: "right",
+            backgroundColor: "#a72828",
+            style: {
+                borderRadius: "12px"
+            }
+        }).showToast();
+        return;
+    }
     let NewProduct = {
         id: products.length !== 0 ? products[products.length - 1].id + 1 : 1,
         productcode: IdProduct.value,
@@ -245,7 +246,7 @@ function SearchProductByName() {
     RenderStorageList(found);
 }
 function RenderOptionValueInFilter() {
-    let SelectCheckValue = document.getElementById("SelectBoxId");
+    let SelectCheckValue = document.getElementById("selectcategory");
     SelectCheckValue.innerHTML = Category
         .map((value) => {
             return `<option value="${value.categoryName}">${value.categoryName}</option>`
@@ -344,7 +345,7 @@ function ConfirmUpdate() {
         return;
     }
     products.find((value) => {
-        if (value.productname == NameProductUpdate.value && value.id !== products[Valid].id) {
+        if (NameProductUpdate.value == value.productname && value.id !== products[Valid].id) {
             document.querySelector(".error-nameUpdate").style.display = "block";
             document.querySelector(".error-nameUpdate").innerHTML = "Tên sản phẩm đã được sử dụng";
             ValidUpdate = false;
@@ -352,7 +353,7 @@ function ConfirmUpdate() {
         }
     })
     products.find((value) => {
-        if (value.productcode == IdProductUpdate.value && value.id !== products[Valid].id) {
+        if (IdProductUpdate.value == value.productcode && value.id !== products[Valid].id) {
             document.querySelector(".error-idUpdate").style.display = "block";
             document.querySelector(".error-idUpdate").innerHTML = "Mã sản phẩm đã được sử dụng";
             ValidUpdate = false;
@@ -376,27 +377,48 @@ function ConfirmUpdate() {
     } else if (CheckRadioInActive.checked) {
         value = "INACTIVE"
     }
-     if (!radioActive.checked && !radioInactive.checked) {
-            Toastify({
-                text: "Vui lòng chọn trạng thái sản phẩm",
-                duration: 3000,
-                gravity: "top",
-                position: "right",
-                backgroundColor: "#a72828",
-                style: {
-                    borderRadius: "12px"
-                }
-            }).showToast();
-            return;
-        }
-    products[Valid].productname = NameProductUpdate.value;
-    products[Valid].productcode = IdProductUpdate.value;
-    products[Valid].stock = QuantityProductUpdate.value;
-    products[Valid].price = PriceProductUpdate.value;
-    products[Valid].description = DescUpdateProduct.value;
-    products[Valid].discount = DiscountProductUpdate.value;
-    products[Valid].image = ImageProductUpdate.value;
-    products[Valid].categoryName = ValueSelect.value
+    if (!CheckRadioActive.checked && !CheckRadioInActive.checked) {
+        Toastify({
+            text: "Vui lòng chọn trạng thái sản phẩm",
+            duration: 3000,
+            gravity: "top",
+            position: "right",
+            backgroundColor: "#a72828",
+            style: {
+                borderRadius: "12px"
+            }
+        }).showToast();
+        ValidUpdate = false;
+        return;
+    }
+    if (ValidUpdate == true) {
+        products[Valid].productname = NameProductUpdate.value;
+        products[Valid].productcode = IdProductUpdate.value;
+        products[Valid].stock = QuantityProductUpdate.value;
+        products[Valid].price = PriceProductUpdate.value;
+        products[Valid].description = DescUpdateProduct.value;
+        products[Valid].discount = DiscountProductUpdate.value;
+        products[Valid].image = ImageProductUpdate.value;
+        products[Valid].categoryName = ValueSelect.value
+        localStorage.setItem("Products", JSON.stringify(products));
+    }
+    CloseFormUpdateProducts();
+    RenderStorageList(products);
+}
+function ConfirmDeleteProducts() {
+    products.splice(ValidDelete, 1);
     localStorage.setItem("Products", JSON.stringify(products));
-    RenderStorageList();
+    RenderStorageList(products);
+    ValidDelete = -1;
+    Toastify({
+        text: "Xóa sản phẩm thành công",
+        duration: 3000,
+        gravity: "top",
+        position: "right",
+        backgroundColor: "#28a72c",
+        style: {
+            borderRadius: "12px"
+        }
+    }).showToast();
+    CloseConfirmDelete();
 }
